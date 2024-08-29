@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
-import Redis from 'ioredis';
+import { createClient } from 'redis';
 
 @Global()
 @Module({
@@ -8,11 +8,13 @@ import Redis from 'ioredis';
   providers: [
     {
       provide: 'REDIS_CLIENT',
-      useFactory: () => {
-        const redis = new Redis({
-          host: 'localhost',
-          port: 6379,
-        });
+      useFactory: async () => {
+        const redis = await createClient({
+          url: 'redis://localhost:6379',
+        })
+          .on('error', (err) => console.log('Redis Client Error', err))
+          .connect();
+
         return redis;
       },
     },
