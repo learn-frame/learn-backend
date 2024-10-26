@@ -1,6 +1,6 @@
-import { Global, Module } from '@nestjs/common';
-import { ConfigModule as NestConfigModule } from '@nestjs/config';
-import { createClient } from 'redis';
+import { Global, Module } from '@nestjs/common'
+import { ConfigModule as NestConfigModule } from '@nestjs/config'
+import { createClient } from 'redis'
 
 @Global()
 @Module({
@@ -10,15 +10,15 @@ import { createClient } from 'redis';
       provide: 'REDIS_CLIENT',
       useFactory: async () => {
         const redis = await createClient({
-          url: 'redis://localhost:6379',
+          url: 'redis://localhost:6379'
         })
           .on('error', (err) => console.log('Redis Client Error', err))
-          .connect();
+          .connect()
 
-        return redis;
-      },
-    },
+        return redis
+      }
+    }
   ],
-  exports: ['REDIS_CLIENT'],
+  exports: ['REDIS_CLIENT']
 })
 export class ConfigModule {}

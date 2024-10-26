@@ -1,31 +1,31 @@
-import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common';
-import { ClientGrpc } from '@nestjs/microservices';
-import { Metadata } from '@grpc/grpc-js';
+import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common'
+import { ClientGrpc } from '@nestjs/microservices'
+import { Metadata } from '@grpc/grpc-js'
 
 interface ProductById {
-  id: number;
+  id: number
 }
 interface Product {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 interface ProductsService {
-  findOne: (productById: ProductById, metadata: Metadata) => Product;
+  findOne: (productById: ProductById, metadata: Metadata) => Product
 }
 
 @Controller()
 export class ProductsController implements OnModuleInit {
-  private productsService: ProductsService;
+  private productsService: ProductsService
   constructor(@Inject('PRODUCT_PACKAGE') private client: ClientGrpc) {}
   onModuleInit() {
     this.productsService =
-      this.client.getService<ProductsService>('ProductsService');
+      this.client.getService<ProductsService>('ProductsService')
   }
   @Get()
   getProduct(): Product {
     // 第二个参数可以传递元数据
-    const metadata = new Metadata();
-    metadata.add('Set-Cookie', 'yummy_cookie=choco');
-    return this.productsService.findOne({ id: 1 }, metadata);
+    const metadata = new Metadata()
+    metadata.add('Set-Cookie', 'yummy_cookie=choco')
+    return this.productsService.findOne({ id: 1 }, metadata)
   }
 }

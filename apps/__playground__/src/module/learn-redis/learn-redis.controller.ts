@@ -1,5 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { LearnRedisService } from './learn-redis.service';
+import { Controller, Get } from '@nestjs/common'
+import { LearnRedisService } from './learn-redis.service'
 
 @Controller('learn-redis')
 export class LearnRedisController {
@@ -7,31 +7,31 @@ export class LearnRedisController {
 
   @Get('/string')
   string() {
-    return this.learnRedisService.string();
+    return this.learnRedisService.string()
   }
 
   @Get('/list')
   list() {
-    return this.learnRedisService.list();
+    return this.learnRedisService.list()
   }
 
   @Get('/json')
   json() {
-    return this.learnRedisService.json();
+    return this.learnRedisService.json()
   }
 
   @Get('/set')
   set() {
-    return this.learnRedisService.set();
+    return this.learnRedisService.set()
   }
 
   @Get('/hash')
   hash() {
-    return this.learnRedisService.hash();
+    return this.learnRedisService.hash()
   }
 
   @Get('/helper')
   helper() {
-    return this.learnRedisService.helper();
+    return this.learnRedisService.helper()
   }
 }

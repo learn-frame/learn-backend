@@ -1,13 +1,13 @@
-import { Controller } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
-import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
+import { Controller } from '@nestjs/common'
+import { GrpcMethod } from '@nestjs/microservices'
+import { Metadata, ServerUnaryCall } from '@grpc/grpc-js'
 
 interface ProductById {
-  id: number;
+  id: number
 }
 interface Product {
-  id: number;
-  name: string;
+  id: number
+  name: string
 }
 
 @Controller()
@@ -17,14 +17,14 @@ export class GatewayController {
   findOne(
     data: ProductById,
     metadata: Metadata,
-    call: ServerUnaryCall<any, any>,
+    call: ServerUnaryCall<any, any>
   ): Product {
-    console.log('metadata', metadata);
-    console.log('call', call);
+    console.log('metadata', metadata)
+    console.log('call', call)
     const items = [
       { id: 1, name: 'John' },
-      { id: 2, name: 'Doe' },
-    ];
-    return items.find(({ id }) => id === data.id);
+      { id: 2, name: 'Doe' }
+    ]
+    return items.find(({ id }) => id === data.id)
   }
 }
