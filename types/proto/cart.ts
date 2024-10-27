@@ -5,6 +5,7 @@
 // source: proto/cart.proto
 
 /* eslint-disable */
+import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
@@ -49,22 +50,30 @@ export interface DeleteCartResponse {
 export const CART_PACKAGE_NAME = "cart";
 
 export interface CartServiceClient {
-  getCart(request: GetCartRequest): Observable<GetCartResponse>;
+  getCart(request: GetCartRequest, metadata: Metadata, ...rest: any): Observable<GetCartResponse>;
 
-  updateCart(request: UpdateCartRequest): Observable<UpdateCartResponse>;
+  updateCart(request: UpdateCartRequest, metadata: Metadata, ...rest: any): Observable<UpdateCartResponse>;
 
-  deleteCart(request: DeleteCartRequest): Observable<DeleteCartResponse>;
+  deleteCart(request: DeleteCartRequest, metadata: Metadata, ...rest: any): Observable<DeleteCartResponse>;
 }
 
 export interface CartServiceController {
-  getCart(request: GetCartRequest): Promise<GetCartResponse> | Observable<GetCartResponse> | GetCartResponse;
+  getCart(
+    request: GetCartRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Promise<GetCartResponse> | Observable<GetCartResponse> | GetCartResponse;
 
   updateCart(
     request: UpdateCartRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<UpdateCartResponse> | Observable<UpdateCartResponse> | UpdateCartResponse;
 
   deleteCart(
     request: DeleteCartRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<DeleteCartResponse> | Observable<DeleteCartResponse> | DeleteCartResponse;
 }
 

@@ -5,6 +5,7 @@
 // source: proto/product.proto
 
 /* eslint-disable */
+import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
@@ -58,30 +59,38 @@ export interface DeleteProductResponse {
 export const PRODUCT_PACKAGE_NAME = "product";
 
 export interface ProductServiceClient {
-  createProduct(request: CreateProductRequest): Observable<CreateProductResponse>;
+  createProduct(request: CreateProductRequest, metadata: Metadata, ...rest: any): Observable<CreateProductResponse>;
 
-  getProduct(request: GetProductRequest): Observable<GetProductResponse>;
+  getProduct(request: GetProductRequest, metadata: Metadata, ...rest: any): Observable<GetProductResponse>;
 
-  updateProduct(request: UpdateProductRequest): Observable<UpdateProductResponse>;
+  updateProduct(request: UpdateProductRequest, metadata: Metadata, ...rest: any): Observable<UpdateProductResponse>;
 
-  deleteProduct(request: DeleteProductRequest): Observable<DeleteProductResponse>;
+  deleteProduct(request: DeleteProductRequest, metadata: Metadata, ...rest: any): Observable<DeleteProductResponse>;
 }
 
 export interface ProductServiceController {
   createProduct(
     request: CreateProductRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<CreateProductResponse> | Observable<CreateProductResponse> | CreateProductResponse;
 
   getProduct(
     request: GetProductRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<GetProductResponse> | Observable<GetProductResponse> | GetProductResponse;
 
   updateProduct(
     request: UpdateProductRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<UpdateProductResponse> | Observable<UpdateProductResponse> | UpdateProductResponse;
 
   deleteProduct(
     request: DeleteProductRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<DeleteProductResponse> | Observable<DeleteProductResponse> | DeleteProductResponse;
 }
 

@@ -5,6 +5,7 @@
 // source: proto/order.proto
 
 /* eslint-disable */
+import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 import { CartItem } from "./cart";
@@ -46,22 +47,30 @@ export interface CancelOrderResponse {
 export const ORDER_PACKAGE_NAME = "order";
 
 export interface OrderServiceClient {
-  createOrder(request: CreateOrderRequest): Observable<CreateOrderResponse>;
+  createOrder(request: CreateOrderRequest, metadata: Metadata, ...rest: any): Observable<CreateOrderResponse>;
 
-  getOrder(request: GetOrderRequest): Observable<GetOrderResponse>;
+  getOrder(request: GetOrderRequest, metadata: Metadata, ...rest: any): Observable<GetOrderResponse>;
 
-  cancelOrder(request: CancelOrderRequest): Observable<CancelOrderResponse>;
+  cancelOrder(request: CancelOrderRequest, metadata: Metadata, ...rest: any): Observable<CancelOrderResponse>;
 }
 
 export interface OrderServiceController {
   createOrder(
     request: CreateOrderRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<CreateOrderResponse> | Observable<CreateOrderResponse> | CreateOrderResponse;
 
-  getOrder(request: GetOrderRequest): Promise<GetOrderResponse> | Observable<GetOrderResponse> | GetOrderResponse;
+  getOrder(
+    request: GetOrderRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Promise<GetOrderResponse> | Observable<GetOrderResponse> | GetOrderResponse;
 
   cancelOrder(
     request: CancelOrderRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<CancelOrderResponse> | Observable<CancelOrderResponse> | CancelOrderResponse;
 }
 

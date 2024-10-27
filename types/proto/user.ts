@@ -5,6 +5,7 @@
 // source: proto/user.proto
 
 /* eslint-disable */
+import { Metadata } from "@grpc/grpc-js";
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
 
@@ -87,28 +88,38 @@ export interface DeleteUserResponse {
 export const USER_PACKAGE_NAME = "user";
 
 export interface UserServiceClient {
-  createUser(request: CreateUserRequest): Observable<CreateUserResponse>;
+  createUser(request: CreateUserRequest, metadata: Metadata, ...rest: any): Observable<CreateUserResponse>;
 
-  getUser(request: GetUserRequest): Observable<GetUserResponse>;
+  getUser(request: GetUserRequest, metadata: Metadata, ...rest: any): Observable<GetUserResponse>;
 
-  updateUser(request: UpdateUserRequest): Observable<UpdateUserResponse>;
+  updateUser(request: UpdateUserRequest, metadata: Metadata, ...rest: any): Observable<UpdateUserResponse>;
 
-  deleteUser(request: DeleteUserRequest): Observable<DeleteUserResponse>;
+  deleteUser(request: DeleteUserRequest, metadata: Metadata, ...rest: any): Observable<DeleteUserResponse>;
 }
 
 export interface UserServiceController {
   createUser(
     request: CreateUserRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<CreateUserResponse> | Observable<CreateUserResponse> | CreateUserResponse;
 
-  getUser(request: GetUserRequest): Promise<GetUserResponse> | Observable<GetUserResponse> | GetUserResponse;
+  getUser(
+    request: GetUserRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Promise<GetUserResponse> | Observable<GetUserResponse> | GetUserResponse;
 
   updateUser(
     request: UpdateUserRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<UpdateUserResponse> | Observable<UpdateUserResponse> | UpdateUserResponse;
 
   deleteUser(
     request: DeleteUserRequest,
+    metadata: Metadata,
+    ...rest: any
   ): Promise<DeleteUserResponse> | Observable<DeleteUserResponse> | DeleteUserResponse;
 }
 
