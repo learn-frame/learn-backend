@@ -1,16 +1,43 @@
-syntax="proto3";
+syntax = "proto3";
 
 package product;
 
-service ProductsService {
-  rpc FindOne (ProductById) returns (Product) {}
-}
-
-message ProductById {
-  int32 id = 1;
-}
-
 message Product {
-  int32 id = 1;
+  string productId = 1;
   string name = 2;
+  double price = 3;
+  int32 inventoryQuantity = 4;
+}
+
+// 商品服务的请求和响应
+message CreateProductRequest {
+  string name = 1;
+  double price = 2;
+  int32 inventoryQuantity = 3;
+}
+
+message CreateProductResponse { Product product = 1; }
+
+message GetProductRequest { string productId = 1; }
+
+message GetProductResponse { Product product = 1; }
+
+message UpdateProductRequest {
+  string productId = 1;
+  string name = 2;
+  double price = 3;
+  int32 inventoryQuantity = 4;
+}
+
+message UpdateProductResponse { Product product = 1; }
+
+message DeleteProductRequest { string productId = 1; }
+
+message DeleteProductResponse { bool success = 1; }
+
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
 }

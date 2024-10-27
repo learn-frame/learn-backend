@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package cart;
+
+message Cart {
+  string userId = 1;
+  repeated CartItem items = 2;
+  double totalPrice = 3;
+}
+
+message CartItem {
+  string productId = 1;
+  int32 quantity = 2;
+}
+
+message GetCartRequest { int32 userId = 1; }
+
+message GetCartResponse { Cart cart = 1; }
+
+message UpdateCartRequest {
+  string userId = 1;
+  repeated CartItem items = 2;
+}
+
+message UpdateCartResponse { Cart cart = 1; }
+
+message DeleteCartRequest { int32 userId = 1; }
+
+message DeleteCartResponse { bool success = 1; }
+
+service CartService {
+  rpc GetCart(GetCartRequest) returns (GetCartResponse);
+  rpc UpdateCart(UpdateCartRequest) returns (UpdateCartResponse);
+  rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
+}

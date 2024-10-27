@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package order;
+
+import "proto/cart.proto";
+
+message Order {
+  string orderId = 1;
+  string userId = 2;
+  repeated cart.CartItem items = 3;
+  double totalPrice = 4;
+}
+
+message CreateOrderRequest {
+  string userId = 1;
+  repeated cart.CartItem items = 2;
+}
+
+message CreateOrderResponse { Order order = 1; }
+
+message GetOrderRequest { string orderId = 1; }
+
+message GetOrderResponse { Order order = 1; }
+
+message CancelOrderRequest { int32 orderId = 1; }
+
+message CancelOrderResponse { bool success = 1; }
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc GetOrder(GetOrderRequest) returns (GetOrderResponse);
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse);
+}

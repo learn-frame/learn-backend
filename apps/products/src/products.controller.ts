@@ -1,6 +1,6 @@
-import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common'
-import { ClientGrpc } from '@nestjs/microservices'
-import { Metadata } from '@grpc/grpc-js'
+import { Controller } from '@nestjs/common'
+import { GrpcMethod } from '@nestjs/microservices'
+import { Metadata, ServerUnaryCall } from '@grpc/grpc-js'
 
 interface ProductById {
   id: number
@@ -9,23 +9,22 @@ interface Product {
   id: number
   name: string
 }
-interface ProductsService {
-  findOne: (productById: ProductById, metadata: Metadata) => Product
-}
 
 @Controller()
-export class ProductsController implements OnModuleInit {
-  private productsService: ProductsService
-  constructor(@Inject('PRODUCT_PACKAGE') private client: ClientGrpc) {}
-  onModuleInit() {
-    this.productsService =
-      this.client.getService<ProductsService>('ProductsService')
-  }
-  @Get()
-  getProduct(): Product {
-    // 第二个参数可以传递元数据
-    const metadata = new Metadata()
-    metadata.add('Set-Cookie', 'yummy_cookie=choco')
-    return this.productsService.findOne({ id: 1 }, metadata)
+export class ProductsController {
+  // 如下两个参数都是对应proto文件的内容，两个都可以省略，nestjs会自动转换名字大小写去匹配
+  @GrpcMethod('ProductsService', 'FindOne')
+  findOne(
+    data: ProductById,
+    metadata: Metadata,
+    call: ServerUnaryCall<any, any>
+  ): Product {
+    console.log('metadata', metadata)
+    console.log('call', call)
+    const items = [
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Doe' }
+    ]
+    return items.find(({ id }) => id === data.id)
   }
 }

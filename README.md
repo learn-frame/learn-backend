@@ -1,4 +1,4 @@
-# Getting Started
+# Learning Backend
 
 1. **User Service**: Responsible for handling user registration, login, and personal information management.
 2. **Product Service**: Responsible for handling CRUD operations for products and inventory management.
@@ -15,3 +15,8 @@
 6. **Search Service**: Responsible for handling product search functionality.
 7. **Payment Service**: Responsible for handling order payments, integrating with third-party payment platforms like Alipay, WeChat Pay, etc.
 8. **Notification Service**: Responsible for sending information about order status changes, event notifications, and more.
+
+## References
+
+- [Protocol Buffers Documentation](https://protobuf.dev/)
+- [Protocol Buffer Compiler Installation](https://grpc.io/docs/protoc-installation/)
