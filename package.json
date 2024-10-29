@@ -32,6 +32,7 @@
     "@nestjs/platform-express": "^10.4.6",
     "@nestjs/swagger": "^7.4.2",
     "@prisma/client": "^5.21.1",
+    "etcd3": "^1.1.2",
     "google-protobuf": "^3.21.4",
     "ioredis": "^5.4.1",
     "prisma": "^5.21.1",
@@ -88,8 +89,13 @@
     "moduleNameMapper": {
       "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1",
       "^@app/logger(|/.*)$": "<rootDir>/libs/logger/src/$1",
-      "^@app/middileware(|/.*)$": "<rootDir>/libs/middileware/src/$1",
-      "^@app/constant(|/.*)$": "<rootDir>/libs/constant/src/$1"
+      "^@app/constant(|/.*)$": "<rootDir>/libs/constant/src/$1",
+      "^@app/etcd(|/.*)$": "<rootDir>/libs/etcd/src/$1",
+      "^@app/redis(|/.*)$": "<rootDir>/libs/redis/src/$1",
+      "^@app/mysql(|/.*)$": "<rootDir>/libs/mysql/src/$1",
+      "^@app/auth(|/.*)$": "<rootDir>/libs/auth/src/$1",
+      "^@app/rabbit-mq(|/.*)$": "<rootDir>/libs/rabbit-mq/src/$1",
+      "^@app/middleware(|/.*)$": "<rootDir>/libs/middleware/src/$1"
     }
   }
 }

@@ -41,6 +41,9 @@ importers:
       '@prisma/client':
         specifier: ^5.21.1
         version: 5.21.1(prisma@5.21.1)
+      etcd3:
+        specifier: ^1.1.2
+        version: 1.1.2
       google-protobuf:
         specifier: ^3.21.4
         version: 3.21.4
@@ -4637,6 +4640,10 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
+  /bignumber.js@9.1.2:
+    resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
+    dev: false
+
   /bin-check@4.1.0:
     resolution: {integrity: sha512-b6weQyEUKsDGFlACWSIOfveEnImkJyK/FGW6FAG42loyoquvjdtOIqO6yBFzHyqyVVhNgNkQxxx09SFLK28YnA==}
     engines: {node: '>=4'}
@@ -5022,6 +5029,11 @@ packages:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
     dev: true
+
+  /cockatiel@3.2.1:
+    resolution: {integrity: sha512-gfrHV6ZPkquExvMh9IOkKsBzNDk6sDuZ6DdBGUBkvFnTCqCxzpuq48RySgP0AnaqQkw2zynOFj9yly6T1Q2G5Q==}
+    engines: {node: '>=16'}
+    dev: false
 
   /collect-v8-coverage@1.0.2:
     resolution: {integrity: sha512-lHl4d5/ONEbLlJvaJNtsF/Lz+WvB07u2ycqTYbdrq7UypDXailES4valYb2eWiJFxZlVmpGekfqoxQhzyFdT4Q==}
@@ -6464,6 +6476,16 @@ packages:
   /etag@1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+
+  /etcd3@1.1.2:
+    resolution: {integrity: sha512-YIampCz1/OmrVo/tR3QltAVUtYCQQOSFoqmHKKeoHbalm+WdXe3l4rhLIylklu8EzR/I3PBiOF4dC847dDskKg==}
+    engines: {node: '>=16'}
+    dependencies:
+      '@grpc/grpc-js': 1.12.2
+      '@grpc/proto-loader': 0.7.13
+      bignumber.js: 9.1.2
+      cockatiel: 3.2.1
+    dev: false
 
   /events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}

@@ -87,15 +87,6 @@
         "tsConfigPath": "libs/logger/tsconfig.lib.json"
       }
     },
-    "middileware": {
-      "type": "library",
-      "root": "libs/middileware",
-      "entryFile": "index",
-      "sourceRoot": "libs/middileware/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/middileware/tsconfig.lib.json"
-      }
-    },
     "constant": {
       "type": "library",
       "root": "libs/constant",
@@ -103,6 +94,60 @@
       "sourceRoot": "libs/constant/src",
       "compilerOptions": {
         "tsConfigPath": "libs/constant/tsconfig.lib.json"
+      }
+    },
+    "etcd": {
+      "type": "library",
+      "root": "libs/etcd",
+      "entryFile": "index",
+      "sourceRoot": "libs/etcd/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/etcd/tsconfig.lib.json"
+      }
+    },
+    "redis": {
+      "type": "library",
+      "root": "libs/redis",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis/tsconfig.lib.json"
+      }
+    },
+    "mysql": {
+      "type": "library",
+      "root": "libs/mysql",
+      "entryFile": "index",
+      "sourceRoot": "libs/mysql/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mysql/tsconfig.lib.json"
+      }
+    },
+    "auth": {
+      "type": "library",
+      "root": "libs/auth",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth/tsconfig.lib.json"
+      }
+    },
+    "rabbit-mq": {
+      "type": "library",
+      "root": "libs/rabbit-mq",
+      "entryFile": "index",
+      "sourceRoot": "libs/rabbit-mq/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/rabbit-mq/tsconfig.lib.json"
+      }
+    },
+    "middleware": {
+      "type": "library",
+      "root": "libs/middleware",
+      "entryFile": "index",
+      "sourceRoot": "libs/middleware/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/middleware/tsconfig.lib.json"
       }
     }
   }

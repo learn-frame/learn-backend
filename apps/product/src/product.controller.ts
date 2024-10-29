@@ -1,6 +1,5 @@
-import { Controller, Inject } from '@nestjs/common'
+import { Controller } from '@nestjs/common'
 import { GrpcMethod } from '@nestjs/microservices'
-import { Metadata, ServerUnaryCall } from '@grpc/grpc-js'
 import {
   CreateProductRequest,
   CreateProductResponse,

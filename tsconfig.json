@@ -41,6 +41,48 @@
       ],
       "@app/constant/*": [
         "libs/constant/src/*"
+      ],
+      "@app/etcd": [
+        "libs/etcd/src"
+      ],
+      "@app/etcd/*": [
+        "libs/etcd/src/*"
+      ],
+      "@app/redis": [
+        "libs/redis/src"
+      ],
+      "@app/redis/*": [
+        "libs/redis/src/*"
+      ],
+      "@app/rabbitmq": [
+        "libs/rabbitmq/src"
+      ],
+      "@app/rabbitmq/*": [
+        "libs/rabbitmq/src/*"
+      ],
+      "@app/mysql": [
+        "libs/mysql/src"
+      ],
+      "@app/mysql/*": [
+        "libs/mysql/src/*"
+      ],
+      "@app/auth": [
+        "libs/auth/src"
+      ],
+      "@app/auth/*": [
+        "libs/auth/src/*"
+      ],
+      "@app/rabbit-mq": [
+        "libs/rabbit-mq/src"
+      ],
+      "@app/rabbit-mq/*": [
+        "libs/rabbit-mq/src/*"
+      ],
+      "@app/middleware": [
+        "libs/middleware/src"
+      ],
+      "@app/middleware/*": [
+        "libs/middleware/src/*"
       ]
     }
   }
