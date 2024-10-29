@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common'
+import { Controller, Inject } from '@nestjs/common'
 import { GrpcMethod } from '@nestjs/microservices'
 import { Metadata, ServerUnaryCall } from '@grpc/grpc-js'
 import {
@@ -14,17 +14,19 @@ import {
   UpdateProductResponse
 } from 'types/proto/product'
 import { Observable } from 'rxjs'
+import { ProductService } from './product.service'
 
 @Controller()
 export class ProductController implements ProductServiceController {
+  constructor(private readonly productService: ProductService) {}
+
+  @GrpcMethod('ProductService', 'CreateProduct')
   createProduct(
     request: CreateProductRequest
-  ):
-    | Promise<CreateProductResponse>
-    | Observable<CreateProductResponse>
-    | CreateProductResponse {
-    throw new Error('Method not implemented.')
+  ): Promise<CreateProductResponse> | CreateProductResponse {
+    return this.productService.createProduct(request)
   }
+
   @GrpcMethod('ProductService', 'GetProduct')
   getProduct(
     request: GetProductRequest
@@ -32,25 +34,9 @@ export class ProductController implements ProductServiceController {
     | Promise<GetProductResponse>
     | Observable<GetProductResponse>
     | GetProductResponse {
-    const products: Product[] = [
-      {
-        productId: '1',
-        name: 'John',
-        price: 1,
-        inventoryQuantity: 1
-      },
-      {
-        productId: '2',
-        name: 'Doe',
-        price: 2,
-        inventoryQuantity: 2
-      }
-    ]
-
-    return {
-      product: products.find(({ productId }) => productId === request.productId)
-    }
+    return this.productService.getProduct(request)
   }
+
   updateProduct(
     request: UpdateProductRequest
   ):
@@ -59,6 +45,7 @@ export class ProductController implements ProductServiceController {
     | UpdateProductResponse {
     throw new Error('Method not implemented.')
   }
+
   deleteProduct(
     request: DeleteProductRequest
   ):

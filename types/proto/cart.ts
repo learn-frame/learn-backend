@@ -12,14 +12,20 @@ import { Observable } from "rxjs";
 export const protobufPackage = "cart";
 
 export interface Cart {
-  userId: string;
+  id: string;
   items: CartItem[];
   totalPrice: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CartItem {
+  id: string;
+  cartId: string;
   productId: string;
   quantity: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface GetCartRequest {
@@ -30,9 +36,17 @@ export interface GetCartResponse {
   cart: Cart | undefined;
 }
 
+export interface CreateCartRequest {
+  userId: string;
+}
+
 export interface UpdateCartRequest {
   userId: string;
   items: CartItem[];
+}
+
+export interface CreateCartResponse {
+  cart: Cart | undefined;
 }
 
 export interface UpdateCartResponse {
@@ -52,6 +66,8 @@ export const CART_PACKAGE_NAME = "cart";
 export interface CartServiceClient {
   getCart(request: GetCartRequest, metadata: Metadata, ...rest: any): Observable<GetCartResponse>;
 
+  createCart(request: CreateCartRequest, metadata: Metadata, ...rest: any): Observable<CreateCartResponse>;
+
   updateCart(request: UpdateCartRequest, metadata: Metadata, ...rest: any): Observable<UpdateCartResponse>;
 
   deleteCart(request: DeleteCartRequest, metadata: Metadata, ...rest: any): Observable<DeleteCartResponse>;
@@ -63,6 +79,12 @@ export interface CartServiceController {
     metadata: Metadata,
     ...rest: any
   ): Promise<GetCartResponse> | Observable<GetCartResponse> | GetCartResponse;
+
+  createCart(
+    request: CreateCartRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Promise<CreateCartResponse> | Observable<CreateCartResponse> | CreateCartResponse;
 
   updateCart(
     request: UpdateCartRequest,
@@ -79,7 +101,7 @@ export interface CartServiceController {
 
 export function CartServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["getCart", "updateCart", "deleteCart"];
+    const grpcMethods: string[] = ["getCart", "createCart", "updateCart", "deleteCart"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("CartService", method)(constructor.prototype[method], method, descriptor);

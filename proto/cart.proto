@@ -3,24 +3,36 @@ syntax = "proto3";
 package cart;
 
 message Cart {
-  string userId = 1;
+  string id = 1;
   repeated CartItem items = 2;
   double totalPrice = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
 }
 
 message CartItem {
-  string productId = 1;
-  int32 quantity = 2;
+  string id = 1;
+  string cartId = 2;
+  string productId = 3;
+  int32 quantity = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
 }
 
 message GetCartRequest { int32 userId = 1; }
 
 message GetCartResponse { Cart cart = 1; }
 
+message CreateCartRequest {
+  string userId = 1;
+}
+
 message UpdateCartRequest {
   string userId = 1;
   repeated CartItem items = 2;
 }
+
+message CreateCartResponse { Cart cart = 1; }
 
 message UpdateCartResponse { Cart cart = 1; }
 
@@ -30,6 +42,7 @@ message DeleteCartResponse { bool success = 1; }
 
 service CartService {
   rpc GetCart(GetCartRequest) returns (GetCartResponse);
+  rpc CreateCart(CreateCartRequest) returns (CreateCartResponse);
   rpc UpdateCart(UpdateCartRequest) returns (UpdateCartResponse);
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
 }

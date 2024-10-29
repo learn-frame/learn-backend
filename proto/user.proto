@@ -8,7 +8,7 @@ enum Gender {
 }
 
 message User {
-  string userId = 1;
+  string id = 1;
   string username = 2;
   string name = 3;
   string email = 4;
@@ -20,6 +20,8 @@ message User {
   string website = 10;
   string birthDate = 11;
   Gender gender = 12;
+  string createdAt = 13;
+  string updatedAt = 14;
 }
 
 message CreateUserRequest {
@@ -41,7 +43,7 @@ message CreateUserResponse {
 }
 
 message GetUserRequest {
-  string userId = 1;
+  string id = 1;
 }
 
 message GetUserResponse {
@@ -49,7 +51,7 @@ message GetUserResponse {
 }
 
 message UpdateUserRequest {
-  string userId = 1;
+  string id = 1;
   optional string username = 2;
   optional string name = 3;
   optional string email = 4;
@@ -68,7 +70,7 @@ message UpdateUserResponse {
 }
 
 message DeleteUserRequest {
-  string userId = 1;
+  string id = 1;
 }
 
 message DeleteUserResponse {

@@ -19,7 +19,7 @@ async function bootstrap() {
         },
         url: '127.0.0.1:10088'
       }
-    },
+    }
   )
   await app.listen()
 }

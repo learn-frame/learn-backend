@@ -12,16 +12,20 @@ import { Observable } from "rxjs";
 export const protobufPackage = "product";
 
 export interface Product {
-  productId: string;
+  id: string;
   name: string;
-  price: number;
+  description: string;
+  unitPrice: number;
   inventoryQuantity: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 /** 商品服务的请求和响应 */
 export interface CreateProductRequest {
   name: string;
-  price: number;
+  description: string;
+  unitPrice: number;
   inventoryQuantity: number;
 }
 
@@ -30,7 +34,7 @@ export interface CreateProductResponse {
 }
 
 export interface GetProductRequest {
-  productId: string;
+  id: string;
 }
 
 export interface GetProductResponse {
@@ -38,9 +42,10 @@ export interface GetProductResponse {
 }
 
 export interface UpdateProductRequest {
-  productId: string;
+  id: string;
   name: string;
-  price: number;
+  description: string;
+  unitPrice: number;
   inventoryQuantity: number;
 }
 
@@ -49,7 +54,7 @@ export interface UpdateProductResponse {
 }
 
 export interface DeleteProductRequest {
-  productId: string;
+  id: string;
 }
 
 export interface DeleteProductResponse {

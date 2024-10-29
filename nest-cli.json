@@ -6,10 +6,9 @@
     "deleteOutDir": true,
     "webpack": true,
     "tsConfigPath": "apps/gateway/tsconfig.app.json",
-    "assets": [
-      "**/*.proto"
-    ],
-    "watchAssets": true
+    "assets": ["**/*.proto"],
+    "watchAssets": true,
+    "builder": "swc"
   },
   "monorepo": true,
   "root": "apps/gateway",

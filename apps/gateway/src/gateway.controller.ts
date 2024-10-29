@@ -1,6 +1,15 @@
-import { Controller, Get, Inject, OnModuleInit } from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Inject,
+  OnModuleInit,
+  Post
+} from '@nestjs/common'
 import { ClientGrpc } from '@nestjs/microservices'
 import {
+  CreateProductRequest,
+  CreateProductResponse,
   GetProductResponse,
   ProductServiceController
 } from 'types/proto/product'
@@ -30,7 +39,23 @@ export class GatewayController implements OnModuleInit {
     | Observable<GetProductResponse>
     | GetProductResponse {
     const metadata = new Metadata()
-    return this.productService.getProduct({ productId: '1' }, metadata)
+    return this.productService.getProduct(
+      {
+        id: 'a'
+      },
+      metadata
+    )
+  }
+
+  @Post('product')
+  createProduct(
+    @Body() request: CreateProductRequest
+  ):
+    | Promise<CreateProductResponse>
+    | Observable<CreateProductResponse>
+    | CreateProductResponse {
+    const metadata = new Metadata()
+    return this.productService.createProduct(request, metadata)
   }
 
   @Get('order')
@@ -41,17 +66,11 @@ export class GatewayController implements OnModuleInit {
     const metadata = new Metadata()
     return this.orderService.createOrder(
       {
-        userId: '1',
-        items: [
-          {
-            productId: '1',
-            quantity: 1
-          },
-          {
-            productId: '2',
-            quantity: 2
-          }
-        ]
+        userId: '',
+        items: [],
+        totalPrice: 0,
+        createdAt: '',
+        updatedAt: ''
       },
       metadata
     )

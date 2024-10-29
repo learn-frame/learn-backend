@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common'
-import { Observable } from 'rxjs'
 import { CreateOrderRequest, CreateOrderResponse } from 'types/proto/order'
 import { RabbitSubscribe, AmqpConnection } from '@golevelup/nestjs-rabbitmq'
 
@@ -7,26 +6,22 @@ import { RabbitSubscribe, AmqpConnection } from '@golevelup/nestjs-rabbitmq'
 export class OrderService {
   constructor(private readonly amqpConnection: AmqpConnection) {}
 
-  createOrder(
-    request: CreateOrderRequest
-  ):
-    | Promise<CreateOrderResponse>
-    | Observable<CreateOrderResponse>
-    | CreateOrderResponse {
-    const result = this.amqpConnection.publish(
+  async createOrder(request: CreateOrderRequest): Promise<CreateOrderResponse> {
+    // TODO: create order
+    const result = await this.amqpConnection.publish(
       'MQ_SERVICE',
       'order_created',
       request
     )
 
-    console.log(result)
-
     return {
       order: {
-        orderId: '',
+        id: '',
         userId: '',
         items: [],
-        totalPrice: 1
+        totalPrice: 1,
+        createdAt: new Date().getTime().toString(),
+        updatedAt: new Date().getTime().toString()
       }
     }
   }

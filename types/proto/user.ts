@@ -18,7 +18,7 @@ export enum Gender {
 }
 
 export interface User {
-  userId: string;
+  id: string;
   username: string;
   name: string;
   email: string;
@@ -30,6 +30,8 @@ export interface User {
   website: string;
   birthDate: string;
   gender: Gender;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CreateUserRequest {
@@ -51,7 +53,7 @@ export interface CreateUserResponse {
 }
 
 export interface GetUserRequest {
-  userId: string;
+  id: string;
 }
 
 export interface GetUserResponse {
@@ -59,7 +61,7 @@ export interface GetUserResponse {
 }
 
 export interface UpdateUserRequest {
-  userId: string;
+  id: string;
   username?: string | undefined;
   name?: string | undefined;
   email?: string | undefined;
@@ -78,7 +80,7 @@ export interface UpdateUserResponse {
 }
 
 export interface DeleteUserRequest {
-  userId: string;
+  id: string;
 }
 
 export interface DeleteUserResponse {

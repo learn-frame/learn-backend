@@ -13,15 +13,20 @@ import { CartItem } from "./cart";
 export const protobufPackage = "order";
 
 export interface Order {
-  orderId: string;
+  id: string;
   userId: string;
   items: CartItem[];
   totalPrice: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CreateOrderRequest {
   userId: string;
   items: CartItem[];
+  totalPrice: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface CreateOrderResponse {
@@ -29,7 +34,7 @@ export interface CreateOrderResponse {
 }
 
 export interface GetOrderRequest {
-  orderId: string;
+  id: string;
 }
 
 export interface GetOrderResponse {
@@ -37,7 +42,7 @@ export interface GetOrderResponse {
 }
 
 export interface CancelOrderRequest {
-  orderId: number;
+  id: number;
 }
 
 export interface CancelOrderResponse {

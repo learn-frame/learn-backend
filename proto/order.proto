@@ -5,24 +5,29 @@ package order;
 import "proto/cart.proto";
 
 message Order {
-  string orderId = 1;
+  string id = 1;
   string userId = 2;
   repeated cart.CartItem items = 3;
   double totalPrice = 4;
+  string createdAt = 5;
+  string updatedAt = 6;
 }
 
 message CreateOrderRequest {
   string userId = 1;
   repeated cart.CartItem items = 2;
+  double totalPrice = 3;
+  string createdAt = 4;
+  string updatedAt = 5;
 }
 
 message CreateOrderResponse { Order order = 1; }
 
-message GetOrderRequest { string orderId = 1; }
+message GetOrderRequest { string id = 1; }
 
 message GetOrderResponse { Order order = 1; }
 
-message CancelOrderRequest { int32 orderId = 1; }
+message CancelOrderRequest { int32 id = 1; }
 
 message CancelOrderResponse { bool success = 1; }
 
