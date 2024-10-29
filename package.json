@@ -82,7 +82,14 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1",
+      "^@app/logger(|/.*)$": "<rootDir>/libs/logger/src/$1",
+      "^@app/middileware(|/.*)$": "<rootDir>/libs/middileware/src/$1",
+      "^@app/constant(|/.*)$": "<rootDir>/libs/constant/src/$1"
+    }
   }
 }
