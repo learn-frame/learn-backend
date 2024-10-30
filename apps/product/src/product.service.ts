@@ -7,7 +7,7 @@ import {
   GetProductResponse,
   Product
 } from 'types/proto/product'
-import { PrismaService } from './prisma.service'
+import { PrismaService } from '@app/prisma'
 
 @Injectable()
 export class ProductService {

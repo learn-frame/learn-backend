@@ -1,0 +1,11 @@
+model Product {
+    id                String      @id @default(uuid())
+    name              String
+    description       String
+    unitPrice         Float
+    inventoryQuantity Int
+    createdAt         DateTime    @default(now())
+    updatedAt         DateTime    @updatedAt
+    items             OrderItem[]
+    CartItem          CartItem[]
+}

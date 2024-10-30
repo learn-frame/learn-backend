@@ -9,8 +9,7 @@
     "assets": [
       "**/*.proto"
     ],
-    "watchAssets": true,
-    "builder": "swc"
+    "watchAssets": true
   },
   "monorepo": true,
   "root": "apps/gateway",
@@ -67,15 +66,6 @@
       "sourceRoot": "apps/cart/src",
       "compilerOptions": {
         "tsConfigPath": "apps/cart/tsconfig.app.json"
-      }
-    },
-    "common": {
-      "type": "library",
-      "root": "libs/common",
-      "entryFile": "index",
-      "sourceRoot": "libs/common/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
     },
     "logger": {
@@ -148,6 +138,15 @@
       "sourceRoot": "libs/middleware/src",
       "compilerOptions": {
         "tsConfigPath": "libs/middleware/tsconfig.lib.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
       }
     }
   }

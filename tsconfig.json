@@ -18,72 +18,24 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/common": [
-        "libs/common/src"
-      ],
-      "@app/common/*": [
-        "libs/common/src/*"
-      ],
-      "@app/logger": [
-        "libs/logger/src"
-      ],
-      "@app/logger/*": [
-        "libs/logger/src/*"
-      ],
-      "@app/middileware": [
-        "libs/middileware/src"
-      ],
-      "@app/middileware/*": [
-        "libs/middileware/src/*"
-      ],
-      "@app/constant": [
-        "libs/constant/src"
-      ],
-      "@app/constant/*": [
-        "libs/constant/src/*"
-      ],
-      "@app/etcd": [
-        "libs/etcd/src"
-      ],
-      "@app/etcd/*": [
-        "libs/etcd/src/*"
-      ],
-      "@app/redis": [
-        "libs/redis/src"
-      ],
-      "@app/redis/*": [
-        "libs/redis/src/*"
-      ],
-      "@app/rabbitmq": [
-        "libs/rabbitmq/src"
-      ],
-      "@app/rabbitmq/*": [
-        "libs/rabbitmq/src/*"
-      ],
-      "@app/mysql": [
-        "libs/mysql/src"
-      ],
-      "@app/mysql/*": [
-        "libs/mysql/src/*"
-      ],
-      "@app/auth": [
-        "libs/auth/src"
-      ],
-      "@app/auth/*": [
-        "libs/auth/src/*"
-      ],
-      "@app/rabbit-mq": [
-        "libs/rabbit-mq/src"
-      ],
-      "@app/rabbit-mq/*": [
-        "libs/rabbit-mq/src/*"
-      ],
-      "@app/middleware": [
-        "libs/middleware/src"
-      ],
-      "@app/middleware/*": [
-        "libs/middleware/src/*"
-      ]
+      "@app/logger": ["libs/logger/src"],
+      "@app/logger/*": ["libs/logger/src/*"],
+      "@app/constant": ["libs/constant/src"],
+      "@app/constant/*": ["libs/constant/src/*"],
+      "@app/etcd": ["libs/etcd/src"],
+      "@app/etcd/*": ["libs/etcd/src/*"],
+      "@app/redis": ["libs/redis/src"],
+      "@app/redis/*": ["libs/redis/src/*"],
+      "@app/mysql": ["libs/mysql/src"],
+      "@app/mysql/*": ["libs/mysql/src/*"],
+      "@app/auth": ["libs/auth/src"],
+      "@app/auth/*": ["libs/auth/src/*"],
+      "@app/rabbit-mq": ["libs/rabbit-mq/src"],
+      "@app/rabbit-mq/*": ["libs/rabbit-mq/src/*"],
+      "@app/middleware": ["libs/middleware/src"],
+      "@app/middleware/*": ["libs/middleware/src/*"],
+      "@app/prisma": ["libs/prisma/src"],
+      "@app/prisma/*": ["libs/prisma/src/*"]
     }
   }
 }
