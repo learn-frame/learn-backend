@@ -10,7 +10,8 @@
       "**/*.proto"
     ],
     "watchAssets": true,
-    "builder": "swc"
+    "builder": "swc",
+    "typeCheck": true
   },
   "monorepo": true,
   "root": "apps/gateway",
