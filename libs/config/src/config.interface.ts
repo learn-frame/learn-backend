@@ -7,5 +7,4 @@ export interface EnvironmentVariables {
   ETCD_HOSTS: string
   REDIS_URL: string
   SERVICE_KEY: string
-  SERVICE_VALUE: string
 }

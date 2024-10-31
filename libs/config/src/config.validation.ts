@@ -12,6 +12,4 @@ export default Joi.object({
   ETCD_USERNAME: Joi.string(),
   ETCD_PASSWORD: Joi.string(),
   REDIS_URL: Joi.string().uri(),
-  SERVICE_KEY: Joi.string(),
-  SERVICE_VALUE: Joi.string()
 })

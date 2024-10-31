@@ -28,6 +28,7 @@ export class OrderController implements OrderServiceController {
     | CreateOrderResponse {
     return this.orderService.createOrder(request)
   }
+
   getOrder(
     request: GetOrderRequest,
     metadata: Metadata,
@@ -38,6 +39,7 @@ export class OrderController implements OrderServiceController {
     | GetOrderResponse {
     throw new Error('Method not implemented.')
   }
+
   cancelOrder(
     request: CancelOrderRequest,
     metadata: Metadata,

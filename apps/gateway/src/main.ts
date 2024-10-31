@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { GatewayModule } from './gateway.module'
 
-process.env.SERVICE_KEY = 'gateway'
 
 async function bootstrap() {
   const app = await NestFactory.create(GatewayModule)
