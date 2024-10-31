@@ -4,9 +4,10 @@ import { ProductService } from './product.service'
 import { EtcdModule } from '@app/etcd'
 import { RabbitMqModule } from '@app/rabbit-mq'
 import { PrismaModule } from '@app/prisma'
+import { ConfigModule } from '@app/config'
 
 @Module({
-  imports: [EtcdModule, RabbitMqModule, PrismaModule],
+  imports: [ConfigModule, EtcdModule, RabbitMqModule, PrismaModule],
   controllers: [ProductController],
   providers: [ProductService]
 })

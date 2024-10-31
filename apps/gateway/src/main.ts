@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { GatewayModule } from './gateway.module'
 
+process.env.SERVICE_KEY = 'gateway'
+
 async function bootstrap() {
   const app = await NestFactory.create(GatewayModule)
 
@@ -14,6 +16,6 @@ async function bootstrap() {
   const documentFactory = () => SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, documentFactory)
 
-  await app.listen(10086)
+  await app.listen(process.env.PORT)
 }
 bootstrap()

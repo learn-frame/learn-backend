@@ -1,3 +1,5 @@
+process.env.SERVICE_KEY = 'product'
+
 import { NestFactory } from '@nestjs/core'
 import { ProductModule } from './product.module'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
@@ -9,9 +11,9 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        package: 'product',
+        package: process.env.SERVICE_KEY,
         protoPath: join(process.cwd(), 'proto/product.proto'),
-        url: '127.0.0.1:10087'
+        url: `${process.env.HOST}:${process.env.PORT}`
       }
     }
   )

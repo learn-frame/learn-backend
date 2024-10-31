@@ -1,7 +1,7 @@
 {
   "name": "learn-backend",
   "version": "0.0.1",
-  "description": "",
+  "description": "Learn databases, caches, microservices, distributed systems and more.",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -11,13 +11,13 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/apps/my-app/main",
+    "start:prod": "node dist/apps/gateway/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/my-app/test/jest-e2e.json",
+    "test:e2e": "jest --config ./apps/gateway/test/jest-e2e.json",
     "proto-ts": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true,addGrpcMetadata=true,addNestjsRestParameter=true,outputEncodeMethods=false,outputJsonMethods=false,outputClientImpl=false"
   },
   "dependencies": {
@@ -35,15 +35,19 @@
     "etcd3": "^1.1.2",
     "google-protobuf": "^3.21.4",
     "ioredis": "^5.4.1",
+    "joi": "^17.13.3",
+    "nest-winston": "^1.9.7",
     "redis": "^4.7.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "winston": "^3.15.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.4.5",
     "@nestjs/schematics": "^10.2.2",
     "@nestjs/testing": "^10.4.6",
     "@types/express": "^5.0.0",
+    "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.8.1",
     "@types/supertest": "^6.0.2",
@@ -90,11 +94,11 @@
       "^@app/constant(|/.*)$": "<rootDir>/libs/constant/src/$1",
       "^@app/etcd(|/.*)$": "<rootDir>/libs/etcd/src/$1",
       "^@app/redis(|/.*)$": "<rootDir>/libs/redis/src/$1",
-      "^@app/mysql(|/.*)$": "<rootDir>/libs/mysql/src/$1",
       "^@app/auth(|/.*)$": "<rootDir>/libs/auth/src/$1",
       "^@app/rabbit-mq(|/.*)$": "<rootDir>/libs/rabbit-mq/src/$1",
       "^@app/middleware(|/.*)$": "<rootDir>/libs/middleware/src/$1",
-      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1"
+      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
+      "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1"
     }
   }
 }

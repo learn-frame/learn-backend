@@ -32,15 +32,6 @@
         "tsConfigPath": "apps/product/tsconfig.app.json"
       }
     },
-    "__playground__": {
-      "type": "application",
-      "root": "apps/__playground__",
-      "entryFile": "main",
-      "sourceRoot": "apps/__playground__/src",
-      "compilerOptions": {
-        "tsConfigPath": "apps/__playground__/tsconfig.app.json"
-      }
-    },
     "user": {
       "type": "application",
       "root": "apps/user",
@@ -104,15 +95,6 @@
         "tsConfigPath": "libs/redis/tsconfig.lib.json"
       }
     },
-    "mysql": {
-      "type": "library",
-      "root": "libs/mysql",
-      "entryFile": "index",
-      "sourceRoot": "libs/mysql/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/mysql/tsconfig.lib.json"
-      }
-    },
     "auth": {
       "type": "library",
       "root": "libs/auth",
@@ -147,6 +129,15 @@
       "sourceRoot": "libs/prisma/src",
       "compilerOptions": {
         "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+      }
+    },
+    "config": {
+      "type": "library",
+      "root": "libs/config",
+      "entryFile": "index",
+      "sourceRoot": "libs/config/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/config/tsconfig.lib.json"
       }
     }
   }

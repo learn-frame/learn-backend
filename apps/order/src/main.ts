@@ -1,3 +1,5 @@
+process.env.SERVICE_KEY = 'order'
+
 import { NestFactory } from '@nestjs/core'
 import { OrderModule } from './order.module'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
@@ -9,7 +11,7 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        package: 'order',
+        package: process.env.SERVICE_KEY,
         // Due to the `order.proto` imports `cart.proto`, you must import `order.proto` in `protoPath`:
         // `protoPath: [join(process.cwd(), 'proto/order.proto'), join(process.cwd(), 'proto/order.proto')]`,
         // For simplicity, uses `loader.includeDirs` to import all files under the `proto` folder.
@@ -17,7 +19,7 @@ async function bootstrap() {
         loader: {
           includeDirs: [process.cwd(), 'proto']
         },
-        url: '127.0.0.1:10088'
+        url: `${process.env.HOST}:${process.env.PORT}`
       }
     }
   )

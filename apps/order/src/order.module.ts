@@ -3,9 +3,11 @@ import { OrderController } from './order.controller'
 import { OrderService } from './order.service'
 import { RabbitMqModule } from '@app/rabbit-mq'
 import { EtcdModule } from '@app/etcd'
+import { PrismaModule } from '@app/prisma'
+import { ConfigModule } from '@nestjs/config'
 
 @Module({
-  imports: [EtcdModule, RabbitMqModule],
+  imports: [ConfigModule, EtcdModule, RabbitMqModule, PrismaModule],
   controllers: [OrderController],
   providers: [OrderService]
 })
