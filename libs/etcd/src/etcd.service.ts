@@ -7,12 +7,20 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { Etcd3 } from 'etcd3'
 import { EnvironmentVariables } from '@app/config'
+import {
+  Worker,
+  isMainThread,
+  parentPort,
+  setEnvironmentData,
+  getEnvironmentData
+} from 'node:worker_threads'
 
 @Injectable()
 export class EtcdService implements OnModuleInit, OnModuleDestroy {
   private serviceKey: string
   private host: string
   private port: string
+  private workLoopId: NodeJS.Timeout
 
   constructor(
     @Inject('ETCD_CLIENT') private client: Etcd3,
@@ -28,7 +36,8 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
       await this.client
         .put(`/${this.serviceKey}/${this.host}:${this.port}`)
         .value(`${this.host}:${this.port}`)
-      console.log('EtcdService initialized')
+
+      this.startWorker()
     }
   }
 
@@ -54,20 +63,51 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  async watchServiceChanges(
-    serviceName: string,
-    callback: (instances: string[]) => void
-  ) {
+  async watchServiceChanges(serviceName: string) {
     const watcher = await this.client.watch().prefix(`${serviceName}`).create()
 
     watcher.on('put', async () => {
-      const instances = await this.discoverServices(serviceName)
-      callback(instances)
+      const services = await this.discoverServices(serviceName)
+      this.refreshService(services)
+      this.restartWorkLoop()
     })
 
     watcher.on('delete', async () => {
-      const instances = await this.discoverServices(serviceName)
-      callback(instances)
+      const services = await this.discoverServices(serviceName)
+      this.refreshService(services)
+      this.restartWorkLoop()
     })
+  }
+
+  refreshService(services: string[]) {
+    if (this.serviceKey) {
+      process.env[`ETCD_${this.serviceKey}`] = JSON.stringify(services)
+    }
+  }
+
+  restartWorkLoop() {
+    clearInterval(this.workLoopId)
+
+    if (this.serviceKey) {
+      this.workLoop(this.serviceKey)
+    }
+  }
+
+  startWorker() {
+    if (isMainThread) {
+      const worker = new Worker(__filename)
+      worker.on('message', (services: string[]) => {
+        this.refreshService(services)
+      })
+    }
+  }
+
+  workLoop(serviceName: string) {
+    if (!isMainThread) {
+      this.workLoopId = setInterval(() => {
+        const response = this.discoverServices(serviceName)
+        parentPort.postMessage(response)
+      }, 30 * 1000)
+    }
   }
 }

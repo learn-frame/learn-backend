@@ -27,14 +27,10 @@ import { EtcdModule, EtcdService } from '@app/etcd'
               throw new Error('')
             }
 
-            await etcdService.watchServiceChanges('product', (instances) => {
-              console.log('Service instances have changed:', instances)
-            })
-
             return {
               transport: Transport.GRPC,
               options: {
-                url: selectedService,
+                url: process.env.ETCD_PRODUCT || selectedService,
                 package: 'product',
                 protoPath: join(process.cwd(), 'proto/product.proto'),
                 loader: {
@@ -62,14 +58,10 @@ import { EtcdModule, EtcdService } from '@app/etcd'
               throw new Error('')
             }
 
-            await etcdService.watchServiceChanges('order', (instances) => {
-              console.log('Service instances have changed:', instances)
-            })
-
             return {
               transport: Transport.GRPC,
               options: {
-                url: selectedService,
+                url: process.env.ORDER || selectedService,
                 package: 'order',
                 protoPath: join(process.cwd(), 'proto/order.proto'),
                 loader: {
