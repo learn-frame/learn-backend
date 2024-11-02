@@ -4,6 +4,7 @@ import { NestFactory } from '@nestjs/core'
 import { OrderModule } from './order.module'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 import { join } from 'path'
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston'
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -23,6 +24,8 @@ async function bootstrap() {
       }
     }
   )
+
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER))
   await app.listen()
 }
 bootstrap()
