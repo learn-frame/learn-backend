@@ -1,5 +1,5 @@
 import { Metadata } from '@grpc/grpc-js'
-import { Controller } from '@nestjs/common'
+import { Controller, Logger } from '@nestjs/common'
 import { GrpcMethod } from '@nestjs/microservices'
 import { Observable } from 'rxjs'
 import {
@@ -15,7 +15,10 @@ import { OrderService } from './order.service'
 
 @Controller()
 export class OrderController implements OrderServiceController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(
+    private readonly orderService: OrderService,
+    private readonly logger: Logger
+  ) {}
 
   @GrpcMethod('OrderService', 'CreateOrder')
   createOrder(

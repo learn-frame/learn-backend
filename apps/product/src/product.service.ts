@@ -40,7 +40,6 @@ export class ProductService {
     | Promise<GetProductResponse>
     | Observable<GetProductResponse>
     | GetProductResponse {
-    console.log(this.products.find(({ id }) => id === request.id))
     return {
       product: this.products.find(({ id }) => id === request.id)
     }

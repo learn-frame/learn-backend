@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   Inject,
+  Logger,
   OnModuleInit,
   Post
 } from '@nestjs/common'
@@ -22,6 +23,7 @@ export class GatewayController implements OnModuleInit {
   private productService: ProductServiceController
   private orderService: OrderServiceController
   constructor(
+    private readonly logger: Logger,
     @Inject('PRODUCT_PACKAGE') private productClient: ClientGrpc,
     @Inject('ORDER_PACKAGE') private orderClient: ClientGrpc
   ) {}

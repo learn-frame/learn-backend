@@ -1,5 +1,5 @@
 import { EtcdModule, EtcdService } from '@app/etcd'
-import { Module } from '@nestjs/common'
+import { Logger, Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'
@@ -30,7 +30,7 @@ import { GatewayController } from './gateway.controller'
             return {
               transport: Transport.GRPC,
               options: {
-                url: process.env.ETCD_PRODUCT || selectedService,
+                url: selectedService,
                 package: 'product',
                 protoPath: join(process.cwd(), 'proto/product.proto'),
                 loader: {
@@ -61,7 +61,7 @@ import { GatewayController } from './gateway.controller'
             return {
               transport: Transport.GRPC,
               options: {
-                url: process.env.ORDER || selectedService,
+                url: selectedService,
                 package: 'order',
                 protoPath: join(process.cwd(), 'proto/order.proto'),
                 loader: {
@@ -74,6 +74,7 @@ import { GatewayController } from './gateway.controller'
       }
     ])
   ],
-  controllers: [GatewayController]
+  controllers: [GatewayController],
+  providers: [Logger]
 })
 export class GatewayModule {}
