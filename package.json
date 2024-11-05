@@ -1,7 +1,7 @@
 {
   "name": "learn-backend",
   "version": "0.0.1",
-  "description": "Learn databases, caches, microservices, distributed systems and more.",
+  "description": "Learn databases, caches, microservices, message queue, ELK, K8S, distributed systems and more.",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
