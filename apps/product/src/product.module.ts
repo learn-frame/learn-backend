@@ -5,9 +5,16 @@ import { EtcdModule } from '@app/etcd'
 import { RabbitMqModule } from '@app/rabbit-mq'
 import { PrismaModule } from '@app/prisma'
 import { ConfigModule } from '@app/config'
+import { LoggerModule } from '@app/logger'
 
 @Module({
-  imports: [ConfigModule, EtcdModule, RabbitMqModule, PrismaModule],
+  imports: [
+    LoggerModule,
+    ConfigModule,
+    EtcdModule,
+    RabbitMqModule,
+    PrismaModule
+  ],
   controllers: [ProductController],
   providers: [ProductService]
 })

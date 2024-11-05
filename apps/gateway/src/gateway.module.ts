@@ -4,9 +4,11 @@ import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { EtcdModule, EtcdService } from '@app/etcd'
+import { LoggerModule } from '@app/logger'
 
 @Module({
   imports: [
+    LoggerModule,
     ConfigModule,
     EtcdModule,
     ClientsModule.registerAsync([

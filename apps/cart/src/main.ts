@@ -1,5 +1,3 @@
-process.env.SERVICE_KEY = 'cart'
-
 import { NestFactory } from '@nestjs/core'
 import { CartModule } from './cart.module'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
@@ -11,9 +9,9 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        package: process.env.SERVICE_KEY,
+        package: 'cart',
         protoPath: join(process.cwd(), 'proto/cart.proto'),
-        url: `${process.env.HOST}:${process.env.PORT}`
+        url: 'localhost:10089'
       }
     }
   )

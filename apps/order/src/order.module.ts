@@ -5,9 +5,16 @@ import { RabbitMqModule } from '@app/rabbit-mq'
 import { EtcdModule } from '@app/etcd'
 import { PrismaModule } from '@app/prisma'
 import { ConfigModule } from '@nestjs/config'
+import { LoggerModule } from '@app/logger'
 
 @Module({
-  imports: [ConfigModule, EtcdModule, RabbitMqModule, PrismaModule],
+  imports: [
+    LoggerModule,
+    ConfigModule,
+    EtcdModule,
+    RabbitMqModule,
+    PrismaModule
+  ],
   controllers: [OrderController],
   providers: [OrderService]
 })

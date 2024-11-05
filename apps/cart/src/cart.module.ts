@@ -3,9 +3,10 @@ import { CartController } from './cart.controller'
 import { CartService } from './cart.service'
 import { EtcdModule } from '@app/etcd'
 import { RabbitMqModule } from '@app/rabbit-mq'
+import { LoggerModule } from '@app/logger'
 
 @Module({
-  imports: [EtcdModule, RabbitMqModule],
+  imports: [LoggerModule, EtcdModule, RabbitMqModule],
   controllers: [CartController],
   providers: [CartService]
 })
