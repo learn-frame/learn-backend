@@ -1,8 +1,8 @@
+import { ConfigModule } from '@app/config'
 import { Global, Module } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { Etcd3 } from 'etcd3'
 import { EtcdService } from './etcd.service'
-import { ConfigModule } from '@app/config'
-import { ConfigService } from '@nestjs/config'
 
 @Global()
 @Module({
@@ -21,7 +21,7 @@ import { ConfigService } from '@nestjs/config'
 
         return client
       },
-      inject: [ConfigService],
+      inject: [ConfigService]
     },
     EtcdService
   ],

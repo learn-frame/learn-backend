@@ -1,3 +1,4 @@
+import { PrismaService } from '@app/prisma'
 import { Injectable } from '@nestjs/common'
 import { Observable } from 'rxjs'
 import {
@@ -7,7 +8,6 @@ import {
   GetProductResponse,
   Product
 } from 'types/proto/product'
-import { PrismaService } from '@app/prisma'
 
 @Injectable()
 export class ProductService {

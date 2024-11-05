@@ -1,5 +1,5 @@
-import { Module } from '@nestjs/common'
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq'
+import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 @Module({

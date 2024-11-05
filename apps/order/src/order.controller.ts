@@ -1,5 +1,7 @@
+import { Metadata } from '@grpc/grpc-js'
 import { Controller } from '@nestjs/common'
-import { OrderService } from './order.service'
+import { GrpcMethod } from '@nestjs/microservices'
+import { Observable } from 'rxjs'
 import {
   CancelOrderRequest,
   CancelOrderResponse,
@@ -9,9 +11,7 @@ import {
   GetOrderResponse,
   OrderServiceController
 } from 'types/proto/order'
-import { Metadata } from '@grpc/grpc-js'
-import { Observable } from 'rxjs'
-import { GrpcMethod } from '@nestjs/microservices'
+import { OrderService } from './order.service'
 
 @Controller()
 export class OrderController implements OrderServiceController {

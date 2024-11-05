@@ -1,3 +1,4 @@
+import { Metadata } from '@grpc/grpc-js'
 import {
   Body,
   Controller,
@@ -7,15 +8,14 @@ import {
   Post
 } from '@nestjs/common'
 import { ClientGrpc } from '@nestjs/microservices'
+import { Observable } from 'rxjs'
+import { GetOrderResponse, OrderServiceController } from 'types/proto/order'
 import {
   CreateProductRequest,
   CreateProductResponse,
   GetProductResponse,
   ProductServiceController
 } from 'types/proto/product'
-import { Observable } from 'rxjs'
-import { Metadata } from '@grpc/grpc-js'
-import { GetOrderResponse, OrderServiceController } from 'types/proto/order'
 
 @Controller()
 export class GatewayController implements OnModuleInit {

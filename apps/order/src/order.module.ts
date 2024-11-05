@@ -1,20 +1,13 @@
-import { Module } from '@nestjs/common'
-import { OrderController } from './order.controller'
-import { OrderService } from './order.service'
-import { RabbitMqModule } from '@app/rabbit-mq'
 import { EtcdModule } from '@app/etcd'
 import { PrismaModule } from '@app/prisma'
+import { RabbitMqModule } from '@app/rabbit-mq'
+import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { LoggerModule } from '@app/logger'
+import { OrderController } from './order.controller'
+import { OrderService } from './order.service'
 
 @Module({
-  imports: [
-    LoggerModule,
-    ConfigModule,
-    EtcdModule,
-    RabbitMqModule,
-    PrismaModule
-  ],
+  imports: [ConfigModule, EtcdModule, RabbitMqModule, PrismaModule],
   controllers: [OrderController],
   providers: [OrderService]
 })

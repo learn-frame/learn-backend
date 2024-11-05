@@ -1,9 +1,10 @@
+import LoggerModule from '@app/logger'
 import { NestFactory } from '@nestjs/core'
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { GatewayModule } from './gateway.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(GatewayModule)
+  const app = await NestFactory.create(GatewayModule, { logger: LoggerModule })
 
   const config = new DocumentBuilder()
     .setTitle('Cats example')

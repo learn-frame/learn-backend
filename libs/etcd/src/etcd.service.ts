@@ -1,19 +1,13 @@
+import { EnvironmentVariables } from '@app/config'
 import {
+  Inject,
   Injectable,
-  OnModuleInit,
   OnModuleDestroy,
-  Inject
+  OnModuleInit
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Etcd3 } from 'etcd3'
-import { EnvironmentVariables } from '@app/config'
-import {
-  Worker,
-  isMainThread,
-  parentPort,
-  setEnvironmentData,
-  getEnvironmentData
-} from 'node:worker_threads'
+import { Worker, isMainThread, parentPort } from 'node:worker_threads'
 
 @Injectable()
 export class EtcdService implements OnModuleInit, OnModuleDestroy {

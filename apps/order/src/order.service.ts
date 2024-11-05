@@ -1,6 +1,6 @@
+import { AmqpConnection, RabbitSubscribe } from '@golevelup/nestjs-rabbitmq'
 import { Injectable } from '@nestjs/common'
 import { CreateOrderRequest, CreateOrderResponse } from 'types/proto/order'
-import { RabbitSubscribe, AmqpConnection } from '@golevelup/nestjs-rabbitmq'
 
 @Injectable()
 export class OrderService {

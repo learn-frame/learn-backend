@@ -1,14 +1,12 @@
+import { EtcdModule, EtcdService } from '@app/etcd'
 import { Module } from '@nestjs/common'
-import { GatewayController } from './gateway.controller'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { EtcdModule, EtcdService } from '@app/etcd'
-import { LoggerModule } from '@app/logger'
+import { GatewayController } from './gateway.controller'
 
 @Module({
   imports: [
-    LoggerModule,
     ConfigModule,
     EtcdModule,
     ClientsModule.registerAsync([

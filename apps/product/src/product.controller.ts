@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common'
 import { GrpcMethod } from '@nestjs/microservices'
+import { Observable } from 'rxjs'
 import {
   CreateProductRequest,
   CreateProductResponse,
@@ -7,12 +8,10 @@ import {
   DeleteProductResponse,
   GetProductRequest,
   GetProductResponse,
-  Product,
   ProductServiceController,
   UpdateProductRequest,
   UpdateProductResponse
 } from 'types/proto/product'
-import { Observable } from 'rxjs'
 import { ProductService } from './product.service'
 
 @Controller()

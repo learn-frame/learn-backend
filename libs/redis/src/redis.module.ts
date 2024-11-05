@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common'
-import { createClient } from 'redis'
 import { ConfigModule } from '@app/config'
+import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import { createClient } from 'redis'
 
 @Module({
   imports: [ConfigModule],

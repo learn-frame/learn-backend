@@ -1,7 +1,8 @@
+import LoggerModule from '@app/logger'
 import { NestFactory } from '@nestjs/core'
-import { CartModule } from './cart.module'
 import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 import { join } from 'path'
+import { CartModule } from './cart.module'
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -12,7 +13,8 @@ async function bootstrap() {
         package: 'cart',
         protoPath: join(process.cwd(), 'proto/cart.proto'),
         url: 'localhost:10089'
-      }
+      },
+      logger: LoggerModule
     }
   )
   await app.listen()
