@@ -3,14 +3,21 @@ import { Logger, Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'
+import { getRandomInt } from 'yancey-js-util'
 import { GatewayController } from './gateway.controller'
 
 @Module({
   imports: [
     ConfigModule,
-    EtcdModule,
     ClientsModule.registerAsync([
       {
+        imports: [
+          EtcdModule.register({
+            serviceKey: 'product',
+            host: 'localhost',
+            port: 10091
+          })
+        ],
         name: 'PRODUCT_PACKAGE',
         inject: [ConfigService, EtcdService],
         useFactory: async (
@@ -18,10 +25,10 @@ import { GatewayController } from './gateway.controller'
           etcdService: EtcdService
         ) => {
           try {
-            let selectedService = ''
             const availableServices =
               await etcdService.discoverServices('product')
-            selectedService = availableServices[0]
+            const selectedService =
+              availableServices[getRandomInt(0, availableServices.length)]
 
             if (!selectedService) {
               throw new Error('')
@@ -42,6 +49,13 @@ import { GatewayController } from './gateway.controller'
         }
       },
       {
+        imports: [
+          EtcdModule.register({
+            serviceKey: 'order',
+            host: 'localhost',
+            port: 10088
+          })
+        ],
         name: 'ORDER_PACKAGE',
         inject: [ConfigService, EtcdService],
         useFactory: async (
@@ -49,10 +63,10 @@ import { GatewayController } from './gateway.controller'
           etcdService: EtcdService
         ) => {
           try {
-            let selectedService = ''
             const availableServices =
               await etcdService.discoverServices('order')
-            selectedService = availableServices[0]
+            const selectedService =
+              availableServices[getRandomInt(0, availableServices.length)]
 
             if (!selectedService) {
               throw new Error('')

@@ -8,40 +8,35 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { Etcd3 } from 'etcd3'
 import { Worker, isMainThread, parentPort } from 'node:worker_threads'
+import { ServiceInfo } from './etcd.module'
 
 @Injectable()
 export class EtcdService implements OnModuleInit, OnModuleDestroy {
-  private serviceKey: string
-  private host: string
-  private port: string
   private workLoopId: NodeJS.Timeout
 
   constructor(
     @Inject('ETCD_CLIENT') private client: Etcd3,
+    @Inject('SERVICE_INFO') private serviceInfo: ServiceInfo,
     private configService: ConfigService<EnvironmentVariables>
-  ) {
-    this.serviceKey = this.configService.get<string>('SERVICE_KEY')
-    this.host = this.configService.get<string>('HOST')
-    this.port = this.configService.get<string>('PORT')
-  }
+  ) {}
 
   async onModuleInit() {
-    if (this.serviceKey) {
-      await this.client
-        .put(`/${this.serviceKey}/${this.host}:${this.port}`)
-        .value(`${this.host}:${this.port}`)
+    await this.client
+      .put(
+        `/${this.serviceInfo.serviceKey}/${this.serviceInfo.host}:${this.serviceInfo.port}`
+      )
+      .value(`${this.serviceInfo.host}:${this.serviceInfo.port}`)
 
-      this.startWorker()
-    }
+    this._workLoopOnMainThread()
   }
 
   async onModuleDestroy() {
-    if (this.serviceKey) {
-      await this.client
-        .delete()
-        .key(`/${this.serviceKey}/${this.host}:${this.port}`)
-      console.log('EtcdService destroyed')
-    }
+    await this.client
+      .delete()
+      .key(
+        `/${this.serviceInfo.serviceKey}/${this.serviceInfo.host}:${this.serviceInfo.port}`
+      )
+    console.log('EtcdService destroyed')
   }
 
   async discoverServices(serviceName: string): Promise<string[]> {
@@ -57,34 +52,41 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  async watchServiceChanges(serviceName: string) {
-    const watcher = await this.client.watch().prefix(`${serviceName}`).create()
+  async watchServiceChanges() {
+    const watcher = await this.client
+      .watch()
+      .prefix(`${this.serviceInfo.serviceKey}`)
+      .create()
 
     watcher.on('put', async () => {
-      const services = await this.discoverServices(serviceName)
+      const services = await this.discoverServices(this.serviceInfo.serviceKey)
       this.refreshService(services)
       this.restartWorkLoop()
     })
 
     watcher.on('delete', async () => {
-      const services = await this.discoverServices(serviceName)
+      const services = await this.discoverServices(this.serviceInfo.serviceKey)
       this.refreshService(services)
       this.restartWorkLoop()
     })
   }
 
   refreshService(services: string[]) {
-    if (this.serviceKey) {
-      process.env[`ETCD_${this.serviceKey}`] = JSON.stringify(services)
-    }
+    process.env[`ETCD_${this.serviceInfo.serviceKey}`] =
+      JSON.stringify(services)
   }
 
   restartWorkLoop() {
     clearInterval(this.workLoopId)
+    this._workLoopOnMainThread()
+  }
 
-    if (this.serviceKey) {
-      this.workLoop(this.serviceKey)
-    }
+  // TODO: refreshing etcd should work on worker thread.
+  _workLoopOnMainThread() {
+    this.workLoopId = setInterval(async () => {
+      const services = await this.discoverServices(this.serviceInfo.serviceKey)
+      this.refreshService(services)
+    }, 30 * 1000)
   }
 
   startWorker() {
@@ -96,10 +98,10 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
     }
   }
 
-  workLoop(serviceName: string) {
+  workLoop() {
     if (!isMainThread) {
       this.workLoopId = setInterval(() => {
-        const response = this.discoverServices(serviceName)
+        const response = this.discoverServices(this.serviceInfo.serviceKey)
         parentPort.postMessage(response)
       }, 30 * 1000)
     }

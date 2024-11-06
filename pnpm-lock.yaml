@@ -71,6 +71,9 @@ dependencies:
   winston-transport:
     specifier: ^4.8.0
     version: 4.8.0
+  yancey-js-util:
+    specifier: ^3.2.0
+    version: 3.2.0
 
 devDependencies:
   '@nestjs/cli':
@@ -5951,6 +5954,10 @@ packages:
 
   /yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+    dev: false
+
+  /yancey-js-util@3.2.0:
+    resolution: {integrity: sha512-NwQM03m1EULuuWGH6nIm+XV3Dl/UHlcoDD6r4xsoOparCYs5SZsU2qHQg9TmsORw0uo1QLQ5AB1tsa/HDW5/9A==}
     dev: false
 
   /yargs-parser@21.1.1:
