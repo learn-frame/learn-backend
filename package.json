@@ -1,7 +1,7 @@
 {
   "name": "learn-backend",
   "version": "0.0.1",
-  "description": "Learn databases, caches, microservices, message queue, ELK, K8S, distributed systems and more.",
+  "description": "Learn databases, caches, microservices, message queues, ELK, K8S, distributed systems and more.",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -21,6 +21,7 @@
     "proto-ts": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true,addGrpcMetadata=true,addNestjsRestParameter=true,outputEncodeMethods=false,outputJsonMethods=false,outputClientImpl=false"
   },
   "dependencies": {
+    "@elastic/ecs-winston-format": "^1.5.3",
     "@golevelup/nestjs-rabbitmq": "^5.5.0",
     "@grpc/grpc-js": "^1.12.2",
     "@grpc/proto-loader": "^0.7.13",
@@ -32,6 +33,7 @@
     "@nestjs/platform-express": "^10.4.6",
     "@nestjs/swagger": "^8.0.1",
     "@prisma/client": "^5.21.1",
+    "dotenv": "^16.4.5",
     "etcd3": "^1.1.2",
     "ioredis": "^5.4.1",
     "joi": "^17.13.3",
@@ -40,8 +42,10 @@
     "redis": "^4.7.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "uuid": "^11.0.2",
     "winston": "^3.16.0",
     "winston-daily-rotate-file": "^5.0.0",
+    "winston-elasticsearch": "^0.19.0",
     "winston-transport": "^4.8.0",
     "yancey-js-util": "^3.2.0"
   },

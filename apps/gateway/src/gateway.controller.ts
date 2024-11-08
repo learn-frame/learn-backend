@@ -40,6 +40,11 @@ export class GatewayController implements OnModuleInit {
     | Promise<GetProductResponse>
     | Observable<GetProductResponse>
     | GetProductResponse {
+    this.logger.debug('debug')
+    this.logger.fatal('fatal')
+    this.logger.log('log')
+    this.logger.verbose('verbose')
+    this.logger.warn('warn')
     const metadata = new Metadata()
     return this.productService.getProduct(
       {
