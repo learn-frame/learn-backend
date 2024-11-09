@@ -1,3 +1,4 @@
+import { ecsFormat } from '@elastic/ecs-winston-format'
 import 'dotenv/config'
 import { WinstonModule } from 'nest-winston'
 import * as winston from 'winston'
@@ -7,15 +8,7 @@ import elasticsearchTransportOptions from './elasticsearch.config'
 
 export default WinstonModule.createLogger({
   instance: winston.createLogger({
-    format: winston.format.combine(
-      winston.format.timestamp({
-        format: 'YYYY-MM-DD HH:mm:ss'
-      }),
-      winston.format.errors({ stack: true }),
-      winston.format.printf(
-        (info) => `[${info.timestamp}] [${info.level}] ${info.message}`
-      )
-    ),
+    format: ecsFormat(),
     transports: [
       new winstonDailyRotateFile({
         level: 'debug',
@@ -39,7 +32,7 @@ export default WinstonModule.createLogger({
       //   brokers: ['localhost:9092'],
       //   topic: 'logs-topic'
       // })
-      new ElasticsearchTransport(elasticsearchTransportOptions)
+      new ElasticsearchTransport(elasticsearchTransportOptions('error'))
     ]
   })
 })

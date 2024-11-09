@@ -1,24 +1,11 @@
-import { v4 } from 'uuid'
 import { ElasticsearchTransportOptions } from 'winston-elasticsearch'
 
-const elasticsearchTransportOptions: ElasticsearchTransportOptions = {
-  level: 'error',
-  indexPrefix: 'learn-backend-logging',
+const elasticsearchTransportOptions = (
+  level: string
+): ElasticsearchTransportOptions => ({
+  level,
+  indexPrefix: 'learn-backend-logging-' + level,
   indexSuffixPattern: 'YYYY-MM-DD',
-  transformer: (logData) => {
-    const spanId = v4()
-    return {
-      '@timestamp': new Date(),
-      severity: logData.level,
-      stack: logData.meta.stack,
-      service_name: 'gateway',
-      service_version: 'v1.0.0',
-      message: `${logData.message}`,
-      data: JSON.stringify(logData.meta.data),
-      span_id: spanId,
-      utcTimestamp: logData.timestamp
-    }
-  },
   clientOpts: {
     node: [process.env.ELASTIC_SEARCH_NODE],
     maxRetries: 5,
@@ -30,6 +17,6 @@ const elasticsearchTransportOptions: ElasticsearchTransportOptions = {
     },
     tls: { rejectUnauthorized: false }
   }
-}
+})
 
 export default elasticsearchTransportOptions

@@ -1,0 +1,22 @@
+{
+  "env": {
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json",
+      "./apps/*/tsconfig.app.json",
+      "./libs/*/tsconfig.lib.json"
+    ],
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["@typescript-eslint", "@darraghor/nestjs-typed"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@darraghor/nestjs-typed/recommended"
+  ]
+}
