@@ -4,7 +4,7 @@ const elasticsearchTransportOptions = (
   level: string
 ): ElasticsearchTransportOptions => ({
   level,
-  indexPrefix: 'learn-backend-logging-' + level,
+  indexPrefix: `learn-backend-logging-${level}`,
   indexSuffixPattern: 'YYYY-MM-DD',
   clientOpts: {
     node: [process.env.ELASTIC_SEARCH_NODE],

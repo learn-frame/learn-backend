@@ -16,7 +16,17 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "plugin:@darraghor/nestjs-typed/recommended"
-  ]
+    "plugin:prettier/recommended"
+    // "plugin:@darraghor/nestjs-typed/recommended"
+  ],
+  "rules": {
+    "@darraghor/nestjs-typed/injectable-should-be-provided": [
+      "error",
+      {
+        "src": ["**/*.ts"],
+        "filterFromPaths": ["node_modules", ".test.", ".spec."]
+      }
+    ],
+    "prefer-template": "error"
+  }
 }

@@ -9,10 +9,10 @@ import { ConfigService } from '@nestjs/config'
         exchanges: [{ name: 'MQ_SERVICE', type: 'topic' }],
         uri: configService.get<string>('RABBITMQ_URI'),
         connectionInitOptions: { wait: false },
-        deserializer: (message: Buffer, msg: any) => {
+        deserializer: (message: Buffer) => {
           return message
         },
-        serializer: (msg: any) => {
+        serializer: (msg: unknown) => {
           const encodedMessage = JSON.stringify(msg)
           return Buffer.from(encodedMessage)
         }

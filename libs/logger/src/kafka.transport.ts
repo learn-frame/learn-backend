@@ -1,4 +1,4 @@
-import { Kafka, KafkaConfig } from 'kafkajs'
+import { Kafka, KafkaConfig, Producer } from 'kafkajs'
 import * as Transport from 'winston-transport'
 
 interface KafkaTopic {
@@ -7,8 +7,8 @@ interface KafkaTopic {
 
 class KafkaTransport extends Transport {
   private kafka: Kafka
-  private topic: any
-  private producer: any
+  private topic: string
+  private producer: Producer
 
   constructor(
     opts: Transport.TransportStreamOptions & KafkaConfig & KafkaTopic
@@ -25,7 +25,7 @@ class KafkaTransport extends Transport {
     this.producer.connect()
   }
 
-  async log(info: any, callback: () => void) {
+  async log(info: unknown, callback: () => void) {
     setImmediate(() => this.emit('logged', info))
 
     try {

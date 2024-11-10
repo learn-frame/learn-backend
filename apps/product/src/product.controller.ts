@@ -41,6 +41,7 @@ export class ProductController implements ProductServiceController {
     | Promise<UpdateProductResponse>
     | Observable<UpdateProductResponse>
     | UpdateProductResponse {
+    console.log(request)
     throw new Error('Method not implemented.')
   }
 
@@ -50,6 +51,7 @@ export class ProductController implements ProductServiceController {
     | Promise<DeleteProductResponse>
     | Observable<DeleteProductResponse>
     | DeleteProductResponse {
+    console.log(request)
     throw new Error('Method not implemented.')
   }
 }
