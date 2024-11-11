@@ -93,6 +93,10 @@ new ElasticsearchTransport({
 3. Finally visit [http://localhost:5601/app/discover](http://localhost:5601/app/discover) and select your data view, and the logs will be displayed on the right panel.
 ![elk-4](./screenshots/elk-4.png)
 
+## ETCD
+
+## Kafka
+
 ## Docker
 
 ## Docker Compose
