@@ -34,7 +34,7 @@ class KafkaTransport extends Transport {
         messages: [{ value: JSON.stringify(info) }]
       })
     } catch (error) {
-      console.error('Error sending log to Kafka', error)
+     
     }
 
     callback()
