@@ -16,6 +16,19 @@
 7. **Payment Service**: Responsible for handling order payments, integrating with third-party payment platforms like Alipay, WeChat Pay, etc.
 8. **Notification Service**: Responsible for sending information about order status changes, event notifications, and more.
 
+## Environment Variables
+
+```bash
+RABBITMQ_URI=<YOUR_RABBITMQ_URI>
+ETCD_HOSTS=<YOUR_ETCD_HOSTS>
+ETCD_USERNAME=<YOUR_ETCD_USERNAME>
+ETCD_PASSWORD=<YOUR_ETCD_PASSWORD>
+REDIS_URL=<YOUR_REDIS_URL>
+ELASTIC_SEARCH_NODE=<YOUR_ELASTIC_SEARCH_NODE>
+ELASTIC_SEARCH_USERNAME=<YOUR_ELASTIC_SEARCH_USERNAME>
+ELASTIC_SEARCH_PASSWORD=<YOUR_ELASTIC_SEARCH_PASSWORD>
+```
+
 ## RabbitMQ
 
 [Install RabbitMQ Via homebrew](https://www.rabbitmq.com/docs/install-homebrew)
@@ -37,3 +50,5 @@ Learn Protocol Buffers grammar from [Protocol Buffers Documentation](https://pro
 Use [`protoc`](https://grpc.io/docs/protoc-installation/) and [`ts-protoc`](https://github.com/stephenh/ts-proto) compile protobuf files to TypeScript interfaces.
 
 Use the vscode plugin [Clang-Format](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format) to **format** the `.proto` files and use the vscode plugin [vscode-proto3](https://marketplace.visualstudio.com/items?itemName=zxh404.vscode-proto3) to **highlight** the `.proto` files.
+
+## ELK with Winston
