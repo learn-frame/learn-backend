@@ -24,33 +24,36 @@ export class OrderController implements OrderServiceController {
   createOrder(
     request: CreateOrderRequest,
     metadata: Metadata,
-    ...rest: any
+    ...rest: unknown[]
   ):
     | Promise<CreateOrderResponse>
     | Observable<CreateOrderResponse>
     | CreateOrderResponse {
+    console.log(metadata, rest)
     return this.orderService.createOrder(request)
   }
 
   getOrder(
     request: GetOrderRequest,
     metadata: Metadata,
-    ...rest: any
+    ...rest: unknown[]
   ):
     | Promise<GetOrderResponse>
     | Observable<GetOrderResponse>
     | GetOrderResponse {
+    console.log(request, metadata, rest)
     throw new Error('Method not implemented.')
   }
 
   cancelOrder(
     request: CancelOrderRequest,
     metadata: Metadata,
-    ...rest: any
+    ...rest: unknown[]
   ):
     | Promise<CancelOrderResponse>
     | Observable<CancelOrderResponse>
     | CancelOrderResponse {
+    console.log(request, metadata, rest)
     throw new Error('Method not implemented.')
   }
 }

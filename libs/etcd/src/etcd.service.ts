@@ -11,6 +11,7 @@ import { Worker, isMainThread, parentPort } from 'node:worker_threads'
 import { ServiceInfo } from './etcd.module'
 
 @Injectable()
+// eslint-disable-next-line @darraghor/nestjs-typed/injectable-should-be-provided
 export class EtcdService implements OnModuleInit, OnModuleDestroy {
   private workLoopId: NodeJS.Timeout
 
@@ -47,7 +48,7 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
         .strings()
 
       return Object.values(result)
-    } catch (error) {
+    } catch {
       return []
     }
   }

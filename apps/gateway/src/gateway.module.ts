@@ -45,7 +45,9 @@ import { GatewayController } from './gateway.controller'
                 }
               }
             }
-          } catch {}
+          } catch (e) {
+            console.log(e)
+          }
         }
       },
       {
@@ -83,7 +85,9 @@ import { GatewayController } from './gateway.controller'
                 }
               }
             }
-          } catch {}
+          } catch (e) {
+            console.log(e)
+          }
         }
       }
     ])

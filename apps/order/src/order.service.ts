@@ -7,12 +7,12 @@ export class OrderService {
   constructor(private readonly amqpConnection: AmqpConnection) {}
 
   async createOrder(request: CreateOrderRequest): Promise<CreateOrderResponse> {
-    // TODO: create order
     const result = await this.amqpConnection.publish(
       'MQ_SERVICE',
       'order_created',
       request
     )
+    console.log(result)
 
     return {
       order: {
@@ -30,8 +30,8 @@ export class OrderService {
     exchange: 'MQ_SERVICE',
     routingKey: 'order_created'
   })
-  public async subscribe(content: Buffer, msg: {}) {
+  public async subscribe(content: Buffer, msg: unknown) {
     const message = JSON.parse(content.toString())
-    console.log(message)
+    console.log(message, msg)
   }
 }
