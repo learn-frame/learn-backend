@@ -2,7 +2,7 @@ import { ecsFormat } from '@elastic/ecs-winston-format'
 import 'dotenv/config'
 import { WinstonModule } from 'nest-winston'
 import * as winston from 'winston'
-import * as winstonDailyRotateFile from 'winston-daily-rotate-file'
+import DailyRotateFile from 'winston-daily-rotate-file'
 import { ElasticsearchTransport } from 'winston-elasticsearch'
 import elasticsearchTransportOptions from './elasticsearch.config'
 
@@ -10,7 +10,7 @@ export default WinstonModule.createLogger({
   instance: winston.createLogger({
     format: ecsFormat(),
     transports: [
-      new winstonDailyRotateFile({
+      new DailyRotateFile({
         level: 'debug',
         datePattern: 'YYYY-MM-DD-HH',
         filename: 'application-%DATE%.log',
@@ -19,7 +19,7 @@ export default WinstonModule.createLogger({
         maxFiles: '30d',
         zippedArchive: true
       }),
-      new winstonDailyRotateFile({
+      new DailyRotateFile({
         level: 'error',
         datePattern: 'YYYY-MM-DD-HH',
         filename: 'error-%DATE%.log',
