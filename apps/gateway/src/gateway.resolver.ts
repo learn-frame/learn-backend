@@ -1,25 +1,20 @@
 import { Metadata } from '@grpc/grpc-js'
-import {
-  Body,
-  Controller,
-  Get,
-  Inject,
-  Logger,
-  OnModuleInit,
-  Post
-} from '@nestjs/common'
+import { Inject, Logger, OnModuleInit } from '@nestjs/common'
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { ClientGrpc } from '@nestjs/microservices'
 import { Observable } from 'rxjs'
 import { GetOrderResponse, OrderServiceController } from 'types/proto/order'
 import {
-  CreateProductRequest,
   CreateProductResponse,
   GetProductResponse,
   ProductServiceController
 } from 'types/proto/product'
+import { CreateProductInput } from './inputs/product.input'
+import { OrderResponse } from './models/order.model'
+import { ProductResponse } from './models/product.model'
 
-@Controller()
-export class GatewayController implements OnModuleInit {
+@Resolver()
+export class GatewayResolver implements OnModuleInit {
   private productService: ProductServiceController
   private orderService: OrderServiceController
   constructor(
@@ -35,32 +30,34 @@ export class GatewayController implements OnModuleInit {
       this.orderClient.getService<OrderServiceController>('OrderService')
   }
 
-  @Get('product')
-  getProductById():
+  @Query(() => ProductResponse)
+  getProductById(
+    @Args('id') id: string
+  ):
     | Promise<GetProductResponse>
     | Observable<GetProductResponse>
     | GetProductResponse {
     const metadata = new Metadata()
     return this.productService.getProduct(
       {
-        id: 'a'
+        id
       },
       metadata
     )
   }
 
-  @Post('product')
+  @Mutation(() => ProductResponse)
   createProduct(
-    @Body() request: CreateProductRequest
+    @Args('createProductInput') createProductInput: CreateProductInput
   ):
     | Promise<CreateProductResponse>
     | Observable<CreateProductResponse>
     | CreateProductResponse {
     const metadata = new Metadata()
-    return this.productService.createProduct(request, metadata)
+    return this.productService.createProduct(createProductInput, metadata)
   }
 
-  @Get('order')
+  @Mutation(() => OrderResponse)
   createOrder():
     | Promise<GetOrderResponse>
     | Observable<GetOrderResponse>

@@ -1,10 +1,13 @@
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
 import { EtcdModule, EtcdService } from '@app/etcd'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Logger, Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'
 import { getRandomInt } from 'yancey-js-util'
-import { GatewayController } from './gateway.controller'
+import { GatewayResolver } from './gateway.resolver'
 
 @Module({
   imports: [
@@ -90,9 +93,16 @@ import { GatewayController } from './gateway.controller'
           }
         }
       }
-    ])
+    ]),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      sortSchema: true,
+      // http://localhost:10086/graphql
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()]
+    })
   ],
-  controllers: [GatewayController],
-  providers: [Logger]
+  providers: [GatewayResolver, Logger]
 })
 export class GatewayModule {}

@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateProductInput {
+  description: String!
+  inventoryQuantity: Int!
+  name: String!
+  unitPrice: Int!
+}
+
+type Mutation {
+  createOrder: OrderResponse!
+  createProduct(createProductInput: CreateProductInput!): ProductResponse!
+}
+
+type Order {
+  createdAt: String!
+  id: String!
+  items: [OrderItem!]!
+  totalPrice: Int!
+  updatedAt: String!
+  userId: String!
+}
+
+type OrderItem {
+  cartId: String!
+  createdAt: String!
+  id: String!
+  productId: String!
+  quantity: Int!
+  updatedAt: String!
+}
+
+type OrderResponse {
+  order: Order
+}
+
+type Product {
+  createdAt: String!
+  description: String
+  id: String!
+  inventoryQuantity: Int!
+  name: String!
+  unitPrice: Int!
+  updatedAt: String!
+}
+
+type ProductResponse {
+  product: Product
+}
+
+type Query {
+  getProductById(id: String!): ProductResponse!
+}
