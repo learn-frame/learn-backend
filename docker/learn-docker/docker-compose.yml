@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  nodejs-debian:
+    build: .
+    ports:
+     - "8964:8964"
+
+  redis:
+    image: "redis:alpine"
