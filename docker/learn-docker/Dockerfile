@@ -1,5 +1,5 @@
-# [BUILD IMAGE] `docker build -t nodejs-debian .`
-# [RUN CONTAINER] `docker run -p 8964:8964 nodejs-debian`
+# [BUILD IMAGE] `docker build -t express-server .`
+# [RUN CONTAINER] `docker run -p 8964:8964 express-server`
 
 FROM node:20 AS builder
 
@@ -7,8 +7,9 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY src ./src
+COPY tsconfig.json ./
 
-RUN npm install --production
+RUN npm install
 
 FROM node:20-slim AS runtime
 
