@@ -1,10 +1,8 @@
 import { ElasticsearchTransportOptions } from 'winston-elasticsearch'
 
-const elasticsearchTransportOptions = (
-  level: string
-): ElasticsearchTransportOptions => ({
-  level,
-  indexPrefix: `learn-backend-logging-${level}`,
+const elasticsearchTransportOptions: ElasticsearchTransportOptions = {
+  level: 'info',
+  indexPrefix: 'learn-backend-logging',
   indexSuffixPattern: 'YYYY-MM-DD',
   clientOpts: {
     node: [process.env.ELASTIC_SEARCH_NODE],
@@ -17,6 +15,6 @@ const elasticsearchTransportOptions = (
     },
     tls: { rejectUnauthorized: false }
   }
-})
+}
 
 export default elasticsearchTransportOptions

@@ -8,6 +8,7 @@ import elasticsearchTransportOptions from './elasticsearch.config'
 
 export default WinstonModule.createLogger({
   instance: winston.createLogger({
+    level: 'info',
     format: ecsFormat(),
     transports: [
       new DailyRotateFile({
@@ -32,7 +33,7 @@ export default WinstonModule.createLogger({
       //   brokers: ['localhost:9092'],
       //   topic: 'logs-topic'
       // })
-      new ElasticsearchTransport(elasticsearchTransportOptions('error'))
+      new ElasticsearchTransport(elasticsearchTransportOptions)
     ]
   })
 })
