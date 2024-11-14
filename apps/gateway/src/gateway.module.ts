@@ -11,16 +11,10 @@ import { GatewayResolver } from './gateway.resolver'
 
 @Module({
   imports: [
+    EtcdModule.register(),
     ConfigModule,
     ClientsModule.registerAsync([
       {
-        imports: [
-          EtcdModule.register({
-            serviceKey: 'product',
-            host: 'localhost',
-            port: 10091
-          })
-        ],
         name: 'PRODUCT_PACKAGE',
         inject: [ConfigService, EtcdService],
         useFactory: async (
@@ -54,13 +48,6 @@ import { GatewayResolver } from './gateway.resolver'
         }
       },
       {
-        imports: [
-          EtcdModule.register({
-            serviceKey: 'order',
-            host: 'localhost',
-            port: 10088
-          })
-        ],
         name: 'ORDER_PACKAGE',
         inject: [ConfigService, EtcdService],
         useFactory: async (
@@ -98,7 +85,6 @@ import { GatewayResolver } from './gateway.resolver'
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
       sortSchema: true,
-      // http://localhost:10086/graphql
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()]
     })

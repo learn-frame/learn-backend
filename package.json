@@ -115,7 +115,7 @@
       "^@app/etcd(|/.*)$": "<rootDir>/libs/etcd/src/$1",
       "^@app/redis(|/.*)$": "<rootDir>/libs/redis/src/$1",
       "^@app/auth(|/.*)$": "<rootDir>/libs/auth/src/$1",
-      "^@app/rabbit-mq(|/.*)$": "<rootDir>/libs/rabbit-mq/src/$1",
+      "^@app/rabbitmq(|/.*)$": "<rootDir>/libs/rabbitmq/src/$1",
       "^@app/middleware(|/.*)$": "<rootDir>/libs/middleware/src/$1",
       "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
       "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1"

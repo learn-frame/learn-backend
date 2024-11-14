@@ -1,5 +1,5 @@
 import { EtcdModule } from '@app/etcd'
-import { RabbitMqModule } from '@app/rabbit-mq'
+import { RabbitMqModule } from '@app/rabbitmq'
 import { Logger, Module } from '@nestjs/common'
 import { CartController } from './cart.controller'
 import { CartService } from './cart.service'

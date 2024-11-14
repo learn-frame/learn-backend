@@ -1,5 +1,5 @@
 import { ConfigModule } from '@app/config'
-import { DynamicModule, Module } from '@nestjs/common'
+import { DynamicModule, Global, Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Etcd3 } from 'etcd3'
 import { EtcdService } from './etcd.service'
@@ -10,9 +10,10 @@ export interface ServiceInfo {
   port: number
 }
 
+@Global()
 @Module({})
 export class EtcdModule {
-  static register(serviceInfo: ServiceInfo): DynamicModule {
+  static register(serviceInfo?: ServiceInfo): DynamicModule {
     return {
       imports: [ConfigModule],
       module: EtcdModule,

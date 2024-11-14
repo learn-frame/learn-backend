@@ -48,11 +48,11 @@
       "@app/auth/*": [
         "libs/auth/src/*"
       ],
-      "@app/rabbit-mq": [
-        "libs/rabbit-mq/src"
+      "@app/rabbitmq": [
+        "libs/rabbitmq/src"
       ],
-      "@app/rabbit-mq/*": [
-        "libs/rabbit-mq/src/*"
+      "@app/rabbitmq/*": [
+        "libs/rabbitmq/src/*"
       ],
       "@app/middleware": [
         "libs/middleware/src"

@@ -104,13 +104,13 @@
         "tsConfigPath": "libs/auth/tsconfig.lib.json"
       }
     },
-    "rabbit-mq": {
+    "rabbitmq": {
       "type": "library",
-      "root": "libs/rabbit-mq",
+      "root": "libs/rabbitmq",
       "entryFile": "index",
-      "sourceRoot": "libs/rabbit-mq/src",
+      "sourceRoot": "libs/rabbitmq/src",
       "compilerOptions": {
-        "tsConfigPath": "libs/rabbit-mq/tsconfig.lib.json"
+        "tsConfigPath": "libs/rabbitmq/tsconfig.lib.json"
       }
     },
     "middleware": {

@@ -16,12 +16,14 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
   private workLoopId: NodeJS.Timeout
 
   constructor(
+    private configService: ConfigService<EnvironmentVariables>,
     @Inject('ETCD_CLIENT') private client: Etcd3,
-    @Inject('SERVICE_INFO') private serviceInfo: ServiceInfo,
-    private configService: ConfigService<EnvironmentVariables>
+    @Inject('SERVICE_INFO') private serviceInfo?: ServiceInfo
   ) {}
 
   async onModuleInit() {
+    if (!this.serviceInfo) return
+
     await this.client
       .put(
         `/${this.serviceInfo.serviceKey}/${this.serviceInfo.host}:${this.serviceInfo.port}`
@@ -32,6 +34,8 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
   }
 
   async onModuleDestroy() {
+    if (!this.serviceInfo) return
+
     await this.client
       .delete()
       .key(
@@ -54,6 +58,8 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
   }
 
   async watchServiceChanges() {
+    if (!this.serviceInfo) return
+
     const watcher = await this.client
       .watch()
       .prefix(`${this.serviceInfo.serviceKey}`)
@@ -73,6 +79,8 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
   }
 
   refreshService(services: string[]) {
+    if (!this.serviceInfo) return
+
     process.env[`ETCD_${this.serviceInfo.serviceKey}`] =
       JSON.stringify(services)
   }
@@ -84,6 +92,8 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
 
   // TODO: refreshing etcd should work on worker thread.
   _workLoopOnMainThread() {
+    if (!this.serviceInfo) return
+
     this.workLoopId = setInterval(async () => {
       const services = await this.discoverServices(this.serviceInfo.serviceKey)
       this.refreshService(services)
@@ -100,6 +110,7 @@ export class EtcdService implements OnModuleInit, OnModuleDestroy {
   }
 
   workLoop() {
+    if (!this.serviceInfo) return
     if (!isMainThread) {
       this.workLoopId = setInterval(() => {
         const response = this.discoverServices(this.serviceInfo.serviceKey)
