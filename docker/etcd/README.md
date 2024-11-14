@@ -1,0 +1,26 @@
+# Three ETCD clusters
+
+## .env
+
+```bash
+ETCD_IMAGE=bitnami/etcd:latest
+ETCD_NETWORK=etcd-network
+ETCD_DATA_DIR=/var/lib/etcd
+ETCD_PEER_PORT=2380
+ETCD_INITIAL_CLUSTER_TOKEN=019324e3-5a8d-7b02-abad-3b61bbdf4cce
+ETCD_INITIAL_CLUSTER_STATE=new
+ETCD_TIMEZONE=Asia/Shanghai
+ETCD_ALLOW_NONE_AUTHENTICATION=yes
+
+ETCD_NAME_1=etcd-node1
+ETCD_HOST_1=etcd-node1
+ETCD_CLIENT_PORT_1=12379
+
+ETCD_NAME_2=etcd-node2
+ETCD_HOST_2=etcd-node2
+ETCD_CLIENT_PORT_2=22379
+
+ETCD_NAME_3=etcd-node3
+ETCD_HOST_3=etcd-node3
+ETCD_CLIENT_PORT_3=32379
+```
