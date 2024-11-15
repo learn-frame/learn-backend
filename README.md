@@ -51,7 +51,7 @@ Use [`protoc`](https://grpc.io/docs/protoc-installation/) and [`ts-protoc`](http
 
 Use the vscode plugin [Clang-Format](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format) to **format** the `.proto` files and use the vscode plugin [vscode-proto3](https://marketplace.visualstudio.com/items?itemName=zxh404.vscode-proto3) to **highlight** the `.proto` files.
 
-## ELK with Nest.js and Winston
+## [ELK with Nest.js and Winston](./docker/elk/)
 
 ![elk-1](./screenshots/elk-1.webp)
 
@@ -66,7 +66,7 @@ Use the vscode plugin [Clang-Format](https://marketplace.visualstudio.com/items?
 
 ```ts
 new ElasticsearchTransport({
-  level: 'error',
+  level: 'info',
   indexPrefix: `learn-backend-logging`,
   indexSuffixPattern: 'YYYY-MM-DD',
   clientOpts: {
@@ -78,7 +78,7 @@ new ElasticsearchTransport({
       username: process.env.ELASTIC_SEARCH_USERNAME,
       password: process.env.ELASTIC_SEARCH_PASSWORD
     },
-    // [ONLY DEV SERVER] If not `false` a server automatically reject clients with invalid certificates.
+    // If not `false` a server automatically reject clients with invalid certificates.
     tls: { rejectUnauthorized: false } 
   }
 })
@@ -93,12 +93,24 @@ new ElasticsearchTransport({
 3. Finally visit [http://localhost:5601/app/discover](http://localhost:5601/app/discover) and select your data view, and the logs will be displayed on the right panel.
 ![elk-4](./screenshots/elk-4.png)
 
-## ETCD
+### KQL
+
+- message:hello
+- message:hel*
+- message_*:hello
+- flight_num:T*V
+- number>=100
+- @timestamp>2024-11-14
+- name:Yancey and addr:Tokyo
+- name:Yancey or addr:Tokyo
+- not response:200
+- response:400 and not ARGUMENT_ERROR
+- level1.level2 { prop1: "foo" or prop1: "baz" }
+
+## [ETCD](./docker/etcd/)
 
 ## Kafka
 
-## Docker
-
-## Docker Compose
+## Docker & Docker Compose
 
 ## K8S
