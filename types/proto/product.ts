@@ -5,72 +5,88 @@
 // source: proto/product.proto
 
 /* eslint-disable */
-import { Metadata } from "@grpc/grpc-js";
-import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
-import { Observable } from "rxjs";
+import { Metadata } from '@grpc/grpc-js'
+import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices'
+import { Observable } from 'rxjs'
 
-export const protobufPackage = "product";
+export const protobufPackage = 'product'
 
 export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  unitPrice: number;
-  inventoryQuantity: number;
-  createdAt: string;
-  updatedAt: string;
+  id: string
+  name: string
+  description: string
+  unitPrice: number
+  inventoryQuantity: number
+  createdAt: string
+  updatedAt: string
 }
 
 /** 商品服务的请求和响应 */
 export interface CreateProductRequest {
-  name: string;
-  description: string;
-  unitPrice: number;
-  inventoryQuantity: number;
+  name: string
+  description: string
+  unitPrice: number
+  inventoryQuantity: number
 }
 
 export interface CreateProductResponse {
-  product: Product | undefined;
+  product: Product | undefined
 }
 
 export interface GetProductRequest {
-  id: string;
+  id: string
 }
 
 export interface GetProductResponse {
-  product: Product | undefined;
+  product: Product | undefined
 }
 
 export interface UpdateProductRequest {
-  id: string;
-  name: string;
-  description: string;
-  unitPrice: number;
-  inventoryQuantity: number;
+  id: string
+  name: string
+  description: string
+  unitPrice: number
+  inventoryQuantity: number
 }
 
 export interface UpdateProductResponse {
-  product: Product | undefined;
+  product: Product | undefined
 }
 
 export interface DeleteProductRequest {
-  id: string;
+  id: string
 }
 
 export interface DeleteProductResponse {
-  success: boolean;
+  success: boolean
 }
 
-export const PRODUCT_PACKAGE_NAME = "product";
+export const PRODUCT_PACKAGE_NAME = 'product'
 
 export interface ProductServiceClient {
-  createProduct(request: CreateProductRequest, metadata: Metadata, ...rest: any): Observable<CreateProductResponse>;
+  createProduct(
+    request: CreateProductRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Observable<CreateProductResponse>
 
-  getProduct(request: GetProductRequest, metadata: Metadata, ...rest: any): Observable<GetProductResponse>;
+  getProduct(
+    request: GetProductRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Observable<GetProductResponse>
 
-  updateProduct(request: UpdateProductRequest, metadata: Metadata, ...rest: any): Observable<UpdateProductResponse>;
+  updateProduct(
+    request: UpdateProductRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Observable<UpdateProductResponse>
 
-  deleteProduct(request: DeleteProductRequest, metadata: Metadata, ...rest: any): Observable<DeleteProductResponse>;
+  deleteProduct(
+    request: DeleteProductRequest,
+    metadata: Metadata,
+    ...rest: any
+  ): Observable<DeleteProductResponse>
 }
 
 export interface ProductServiceController {
@@ -78,40 +94,71 @@ export interface ProductServiceController {
     request: CreateProductRequest,
     metadata: Metadata,
     ...rest: any
-  ): Promise<CreateProductResponse> | Observable<CreateProductResponse> | CreateProductResponse;
+  ):
+    | Promise<CreateProductResponse>
+    | Observable<CreateProductResponse>
+    | CreateProductResponse
 
   getProduct(
     request: GetProductRequest,
     metadata: Metadata,
     ...rest: any
-  ): Promise<GetProductResponse> | Observable<GetProductResponse> | GetProductResponse;
+  ):
+    | Promise<GetProductResponse>
+    | Observable<GetProductResponse>
+    | GetProductResponse
 
   updateProduct(
     request: UpdateProductRequest,
     metadata: Metadata,
     ...rest: any
-  ): Promise<UpdateProductResponse> | Observable<UpdateProductResponse> | UpdateProductResponse;
+  ):
+    | Promise<UpdateProductResponse>
+    | Observable<UpdateProductResponse>
+    | UpdateProductResponse
 
   deleteProduct(
     request: DeleteProductRequest,
     metadata: Metadata,
     ...rest: any
-  ): Promise<DeleteProductResponse> | Observable<DeleteProductResponse> | DeleteProductResponse;
+  ):
+    | Promise<DeleteProductResponse>
+    | Observable<DeleteProductResponse>
+    | DeleteProductResponse
 }
 
 export function ProductServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["createProduct", "getProduct", "updateProduct", "deleteProduct"];
+    const grpcMethods: string[] = [
+      'createProduct',
+      'getProduct',
+      'updateProduct',
+      'deleteProduct'
+    ]
     for (const method of grpcMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method
+      )
+      GrpcMethod('ProductService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor
+      )
     }
-    const grpcStreamMethods: string[] = [];
+    const grpcStreamMethods: string[] = []
     for (const method of grpcStreamMethods) {
-      const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
-      GrpcStreamMethod("ProductService", method)(constructor.prototype[method], method, descriptor);
+      const descriptor: any = Reflect.getOwnPropertyDescriptor(
+        constructor.prototype,
+        method
+      )
+      GrpcStreamMethod('ProductService', method)(
+        constructor.prototype[method],
+        method,
+        descriptor
+      )
     }
-  };
+  }
 }
 
-export const PRODUCT_SERVICE_NAME = "ProductService";
+export const PRODUCT_SERVICE_NAME = 'ProductService'

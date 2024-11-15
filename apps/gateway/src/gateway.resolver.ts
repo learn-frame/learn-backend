@@ -19,8 +19,8 @@ export class GatewayResolver implements OnModuleInit {
   private orderService: OrderServiceController
   constructor(
     private readonly logger: Logger,
-    @Inject('PRODUCT_PACKAGE') private productClient: ClientGrpc,
-    @Inject('ORDER_PACKAGE') private orderClient: ClientGrpc
+    @Inject('PRODUCT_SERVICE') private productClient: ClientGrpc,
+    @Inject('ORDER_SERVICE') private orderClient: ClientGrpc
   ) {}
 
   onModuleInit() {
@@ -65,11 +65,9 @@ export class GatewayResolver implements OnModuleInit {
     const metadata = new Metadata()
     return this.orderService.createOrder(
       {
-        userId: '',
+        userId: 'userId1',
         items: [],
-        totalPrice: 0,
-        createdAt: '',
-        updatedAt: ''
+        totalPrice: 0
       },
       metadata
     )

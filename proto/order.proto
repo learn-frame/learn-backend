@@ -17,8 +17,6 @@ message CreateOrderRequest {
   string userId = 1;
   repeated cart.CartItem items = 2;
   double totalPrice = 3;
-  string createdAt = 4;
-  string updatedAt = 5;
 }
 
 message CreateOrderResponse { Order order = 1; }

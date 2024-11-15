@@ -3,14 +3,14 @@
 
 ![elk-1](../../screenshots/elk-1.webp)
 
-### Install ELK
+## Install ELK
 
 - [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html)
 - [Running the Elastic Stack ("ELK") on Docker](https://www.elastic.co/guide/en/elastic-stack-get-started/current/get-started-stack-docker.html)
 - [Running Logstash on Docker](https://www.elastic.co/guide/en/logstash/current/docker.html)
 - [NodeJS Series: Episode 9: Logging with Winston, Morgan and ELK Stack: Elasticsearch, Logstash, Kibana](https://medium.com/@darshana-edirisinghe/nodejs-series-episode-9-logging-with-winson-morgan-and-elk-stack-elasticsearch-logstash-f7c9b95f1d3c)
 
-### Nest Winston configuration
+## Nest Winston configuration
 
 ```ts
 new ElasticsearchTransport({
@@ -32,7 +32,7 @@ new ElasticsearchTransport({
 })
 ```
 
-### Kibana configuration
+## Kibana configuration
 
 1. Submit some logs in advance to let ElasticSearch generate **index**, visit [https://localhost:9200/_cat/indices?v](https://localhost:9200/_cat/indices?v) to check whether your index successfully added.
 ![elk-2](../../screenshots/elk-2.png)
@@ -40,3 +40,17 @@ new ElasticsearchTransport({
 ![elk-3](../../screenshots/elk-3.png)
 3. Finally visit [http://localhost:5601/app/discover](http://localhost:5601/app/discover) and select your data view, and the logs will be displayed on the right panel.
 ![elk-4](../../screenshots/elk-4.png)
+
+## KQL
+
+- message:hello
+- message:hel*
+- message_*:hello
+- flight_num:T*V
+- number>=100
+- @timestamp>2024-11-14
+- name:Yancey and addr:Tokyo
+- name:Yancey or addr:Tokyo
+- not response:200
+- response:400 and not ARGUMENT_ERROR
+- level1.level2 { prop1: "foo" or prop1: "baz" }
