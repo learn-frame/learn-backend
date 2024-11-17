@@ -1,6 +1,6 @@
 import { ConfigModule } from '@app/config'
 import { PrismaModule } from '@app/prisma'
-import { RabbitMqModule } from '@app/rabbitmq'
+import { RabbitMQModule } from '@app/rabbitmq'
 import { Logger, Module } from '@nestjs/common'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'
@@ -10,7 +10,7 @@ import { OrderService } from './order.service'
 @Module({
   imports: [
     ConfigModule,
-    RabbitMqModule,
+    RabbitMQModule,
     PrismaModule,
     ClientsModule.register([
       {

@@ -4,7 +4,8 @@ export interface EnvironmentVariables {
   PORT: string
   DATABASE_URL: string
   RABBITMQ_URI: string
+  MONGO_URI: string
   ETCD_HOSTS: string
   REDIS_URL: string
-  SERVICE_KEY: string
+  REDIS_CLIENT: string
 }

@@ -1,4 +1,4 @@
-import { ConfigModule, ConfigService } from '@app/config'
+import { ConfigModule, ConfigService, EnvironmentVariables } from '@app/config'
 import { DynamicModule, Global, Module } from '@nestjs/common'
 import { Etcd3 } from 'etcd3'
 import { EtcdService } from './etcd.service'
@@ -19,7 +19,7 @@ export class EtcdModule {
       providers: [
         {
           provide: 'ETCD_CLIENT',
-          async useFactory(configService: ConfigService) {
+          async useFactory(configService: ConfigService<EnvironmentVariables>) {
             const client = new Etcd3({
               hosts: configService.get<string>('ETCD_HOSTS').split(',')
               // auth: {

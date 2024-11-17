@@ -148,6 +148,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/search/tsconfig.app.json"
       }
+    },
+    "mongo": {
+      "type": "library",
+      "root": "libs/mongo",
+      "entryFile": "index",
+      "sourceRoot": "libs/mongo/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mongo/tsconfig.lib.json"
+      }
     }
   }
 }
