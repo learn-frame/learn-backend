@@ -1,9 +1,10 @@
+import { ConfigModule, ConfigService } from '@app/config'
 import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq'
 import { Module } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 
 @Module({
   imports: [
+    ConfigModule,
     RabbitMQModule.forRootAsync(RabbitMQModule, {
       useFactory: async (configService: ConfigService) => ({
         exchanges: [{ name: 'MQ_SERVICE', type: 'topic' }],

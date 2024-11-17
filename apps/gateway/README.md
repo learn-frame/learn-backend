@@ -7,7 +7,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
 import { EtcdService } from '@app/etcd'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { Logger, Module } from '@nestjs/common'
-import { ConfigModule, ConfigService } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@app/config'
 import { GraphQLModule } from '@nestjs/graphql'
 import { ClientsModule, Transport } from '@nestjs/microservices'
 import { join } from 'path'

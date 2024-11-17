@@ -1,6 +1,5 @@
-import { ConfigModule } from '@app/config'
+import { ConfigModule, ConfigService } from '@app/config'
 import { DynamicModule, Global, Module } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
 import { Etcd3 } from 'etcd3'
 import { EtcdService } from './etcd.service'
 
