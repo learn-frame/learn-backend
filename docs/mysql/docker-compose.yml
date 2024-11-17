@@ -1,0 +1,14 @@
+services:
+
+  mysql:
+    image: mysql:latest
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Shanghai
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/lib/docker/volumes/mysql/data:/var/lib/mysql
+      - /var/lib/docker/volumes/mysql/config/my.cnf:/etc/mysql/my.cnf

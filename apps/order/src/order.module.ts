@@ -19,7 +19,7 @@ import { OrderService } from './order.service'
         options: {
           url:
             process.env.NODE_ENV === 'production'
-              ? 'order-service:10088'
+              ? 'product-service:10088'
               : 'localhost:10088',
           package: 'product',
           protoPath: join(process.cwd(), 'proto/product.proto'),

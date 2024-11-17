@@ -10,14 +10,20 @@ COPY . .
 
 RUN pnpm build product
 
-FROM node:20-slim AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
 COPY --from=builder /app/dist/apps/product ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY package.json .
+COPY ./.env .
 COPY proto ./proto
+COPY prisma ./prisma
+
+RUN node_modules/.bin/prisma generate
+RUN apk update \
+  && apk add openssl
 
 ENV NODE_ENV=production
 EXPOSE 10088

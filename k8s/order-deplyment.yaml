@@ -14,9 +14,21 @@ spec:
     spec:
       containers:
         - name: order
-          image: commerce/order-service:1.0.0
+          image: commerce/order-service:0.0.1
           ports:
             - containerPort: 10087
           env:
             - name: NODE_ENV
               value: production
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+spec:
+  selector:
+    app: order
+  ports:
+    - port: 10087
+      targetPort: 10087
+  type: ClusterIP

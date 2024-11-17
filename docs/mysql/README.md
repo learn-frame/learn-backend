@@ -15,3 +15,9 @@
 - [分组数据](./groupby.md)
 - [子查询](./subquery.md)
 - [连结表](./joinyu.md)
+
+## Docker
+
+```bash
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:latest
+```

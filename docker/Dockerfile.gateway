@@ -10,13 +10,15 @@ COPY . .
 
 RUN pnpm build gateway
 
-FROM node:20-slim AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
 COPY --from=builder /app/dist/apps/gateway ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY package.json .
+COPY .env .
+COPY schema.gql .
 COPY proto ./proto
 
 ENV NODE_ENV=production

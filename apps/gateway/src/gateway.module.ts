@@ -32,7 +32,7 @@ import { GatewayResolver } from './gateway.resolver'
         options: {
           url:
             process.env.NODE_ENV === 'production'
-              ? 'order-service:10088'
+              ? 'product-service:10088'
               : 'localhost:10088',
           package: 'product',
           protoPath: join(process.cwd(), 'proto/product.proto'),
@@ -47,6 +47,7 @@ import { GatewayResolver } from './gateway.resolver'
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
       sortSchema: true,
       playground: false,
+      introspection: true,
       plugins: [ApolloServerPluginLandingPageLocalDefault()]
     })
   ],
