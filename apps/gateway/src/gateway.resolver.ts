@@ -38,6 +38,7 @@ export class GatewayResolver implements OnModuleInit {
     | Observable<GetProductResponse>
     | GetProductResponse {
     const metadata = new Metadata()
+    this.logger.log('call getProduct graphql')
     return this.productService.getProduct(
       {
         id
@@ -53,6 +54,7 @@ export class GatewayResolver implements OnModuleInit {
     | Promise<CreateProductResponse>
     | Observable<CreateProductResponse>
     | CreateProductResponse {
+    this.logger.log('call createProduct graphql')
     const metadata = new Metadata()
     return this.productService.createProduct(createProductInput, metadata)
   }

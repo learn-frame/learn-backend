@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common'
+import { Controller, Logger } from '@nestjs/common'
 import { GrpcMethod } from '@nestjs/microservices'
 import { Observable } from 'rxjs'
 import {
@@ -16,7 +16,10 @@ import { ProductService } from './product.service'
 
 @Controller()
 export class ProductController implements ProductServiceController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly logger: Logger,
+    private readonly productService: ProductService
+  ) {}
 
   @GrpcMethod('ProductService', 'CreateProduct')
   createProduct(
@@ -32,6 +35,7 @@ export class ProductController implements ProductServiceController {
     | Promise<GetProductResponse>
     | Observable<GetProductResponse>
     | GetProductResponse {
+    this.logger.log('call getProduct rpc')
     return this.productService.getProduct(request)
   }
 

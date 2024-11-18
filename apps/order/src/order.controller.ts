@@ -29,6 +29,7 @@ export class OrderController implements OrderServiceController {
     | Promise<CreateOrderResponse>
     | Observable<CreateOrderResponse>
     | CreateOrderResponse {
+    this.logger.log('call createOrder rpc')
     console.log(metadata, rest)
     return this.orderService.createOrder(request)
   }
