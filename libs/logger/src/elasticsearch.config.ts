@@ -9,10 +9,10 @@ const elasticsearchTransportOptions: ElasticsearchTransportOptions = {
     maxRetries: 5,
     requestTimeout: 10000,
     sniffOnStart: false,
-    auth: {
-      username: process.env.ELASTIC_SEARCH_USERNAME,
-      password: process.env.ELASTIC_SEARCH_PASSWORD
-    },
+    // auth: {
+    //   username: process.env.ELASTIC_SEARCH_USERNAME,
+    //   password: process.env.ELASTIC_SEARCH_PASSWORD
+    // },
     tls: { rejectUnauthorized: false }
   }
 }

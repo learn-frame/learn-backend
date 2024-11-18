@@ -10,15 +10,15 @@ docker run -d -p 5672:5672 -p 15672:15672 --hostname rabbitmq_host --name rabbit
 
 1. Enter your rabbitMQ docker container.
 
-```bash
-docker exec -it rabbitmq bash
-```
+    ```bash
+    docker exec -it rabbitmq bash
+    ```
 
 2. Start visual management service.
 
-```bash
-rabbitmq-plugins enable rabbitmq_management
-```
+    ```bash
+    rabbitmq-plugins enable rabbitmq_management
+    ```
 
 The URL is [http://localhost:15672/](http://localhost:15672/), and the default username and password are both `guest`.
 
