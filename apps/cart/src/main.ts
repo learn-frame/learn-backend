@@ -12,7 +12,7 @@ async function bootstrap() {
       options: {
         package: 'cart',
         protoPath: join(process.cwd(), 'proto/cart.proto'),
-        url: 'localhost:10089'
+        url: '0.0.0.0:10089'
       },
       logger: LoggerModule
     }

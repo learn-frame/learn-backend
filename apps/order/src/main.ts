@@ -18,7 +18,7 @@ async function bootstrap() {
         loader: {
           includeDirs: [process.cwd(), 'proto']
         },
-        url: 'localhost:10087'
+        url: '0.0.0.0:10087'
       },
       logger: LoggerModule
     }
