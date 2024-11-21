@@ -1,6 +1,6 @@
 # Docker
 
-Run the following commands in the root path:
+Run the follows commands in the root path:
 
 ```bash
 docker build -t commerce/gateway-service:0.0.1 -f docker/Dockerfile.gateway .
