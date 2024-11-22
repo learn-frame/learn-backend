@@ -2,44 +2,54 @@
 
 ```sql
 /* 检索所有 productCode 以 'S18' 开头的产品 */
-SELECT
- * 
+SELECT 
+    *
 FROM
- products 
+    products
 WHERE
- productCode LIKE 'S18%';
+    productCode LIKE 'S18%';
 
 /* 检索所有 productName 包含 'Ford' 的产品 */
-SELECT
- * 
+SELECT 
+    *
 FROM
- products 
+    products
 WHERE
- productName LIKE '%Ford%';
+    productName LIKE '%Ford%';
 
 /* 检索所有 productLine 以 'Cars' 結尾的产品 */
-SELECT
- * 
+SELECT 
+    *
 FROM
- products 
+    products
 WHERE
- productLine LIKE '%Cars';
+    productLine LIKE '%Cars';
 
 /* 下面的写法可以匹配万物, 除了 NULL */
-SELECT
- * 
+SELECT 
+    *
 FROM
- products 
+    products
 WHERE
- productLine LIKE '%';
+    productLine LIKE '%';
 ```
 
 ```sql
 /* _ 用于检索一个字符, 比如下面这个例子可以匹配到 x104, x103, x10t 等等 */
-SELECT
- * 
+SELECT 
+    *
 FROM
- employees 
+    employees
 WHERE
- extension LIKE 'x10_';
+    extension LIKE 'x10_';
 ```
+
+```sql
+/* 也可以用多个 _, 但不如 % */
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    extension LIKE 'x2___'
+ ```

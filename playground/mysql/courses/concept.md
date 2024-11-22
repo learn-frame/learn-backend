@@ -13,7 +13,7 @@ Server 层包括连接器, 查询缓存, 分析器, 优化器, 执行器等, 涵
 用于连接到 MySQL, 支持登录鉴权啥的.
 
 ```sql
-mysql -h$ip -P$port -u$user -p
+mysql -u <YOUR_USERNAME> -P <YOUR_PORT> -p
 ```
 
 MySQL 通过 `show processlist` 看看哪个链接是否处于空闲, 客户端如果太长时间没动静, 连接器就会自动将它断开. 这个时间是由参数 `wait_timeout` 控制的, 默认值是 8 小时. 5.7 之后通过 `mysql_reset_connection` 来重新初始化连接资源.
@@ -31,14 +31,14 @@ MySQL 通过 `show processlist` 看看哪个链接是否处于空闲, 客户端�
 优化器是在表里面有多个索引的时候, 决定使用哪个索引; 或者在一个语句有多表关联(join)的时候, 决定各个表的连接顺序. 比如你执行下面这样的语句, 这个语句是执行两个表的 join:
 
 ```sql
-SELECT
- * 
+SELECT 
+    *
 FROM
- t1
- JOIN t2 USING ( ID ) 
+    t1
+        JOIN
+    t2 USING (ID)
 WHERE
- t1.c = 10 
- AND t2.d = 20;
+    t1.c = 10 AND t2.d = 20;
 ```
 
 - 既可以先从表 t1 里面取出 c=10 的记录的 ID 值, 再根据 ID 值关联到表 t2, 再判断 t2 里面 d 的值是否等于 20.

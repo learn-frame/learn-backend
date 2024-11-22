@@ -4,10 +4,10 @@
 /* 计算平均值 */
 /* 如果遇到 NULL, 会过滤掉 */
 /* DISTINCT 会过滤掉列中相同的值 */
-SELECT
- AVG( DISTINCT priceEach ) AS avgPriceEach 
+SELECT 
+    AVG(DISTINCT priceEach) AS avgPriceEach
 FROM
- orderdetailss;
+    orderdetails;
 ```
 
 ```sql
@@ -18,10 +18,10 @@ FROM
  orders;-- 326
 
 /* 计算总数, 按照某列来统计, 如股票某一行的这个字段是 NULL, 会忽略掉 */
-SELECT
- COUNT( comments ) AS totalCount 
+SELECT 
+    COUNT(comments) AS totalCount
 FROM
- orders;-- 80
+    orders;-- 80
 ```
 
 ```sql
@@ -32,28 +32,28 @@ FROM
  orderdetails;-- 214.30
 
 /* 计算最小 */
-SELECT
- MIN( priceEach ) 
+SELECT 
+    MIN(priceEach)
 FROM
- orderdetails;-- 26.55
+    orderdetails;-- 26.55
 ```
 
 ```sql
 /* 计算总和 */
-SELECT
- SUM( quantityOrdered * priceEach ) 
+SELECT 
+    SUM(quantityOrdered * priceEach)
 FROM
- orderdetails 
+    orderdetails
 WHERE
- orderNumber = '10103';-- 50218.95
+    orderNumber = '10103';-- 50218.95
 ```
 
 ```sql
 /* 聚集不同值 */
-SELECT
- AVG( DISTINCT priceEach ) AS avgPriceEach,
- MAX( priceEach ) AS maxPriceEach,
- MAX( priceEach ) AS minPriceEach 
+SELECT 
+    AVG(DISTINCT priceEach) AS avgPriceEach,
+    MAX(priceEach) AS maxPriceEach,
+    MAX(priceEach) AS minPriceEach
 FROM
- orderdetails;
+    orderdetails;
 ```

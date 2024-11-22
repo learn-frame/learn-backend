@@ -31,12 +31,6 @@ SHOW STATUS;
 ```
 
 ```sql
-/* 分别用来显示创建特定数据库或表的 MySQL 语句 */
-SHOW CREATE DATABASE;
-SHOW CREATE TABLE;
-```
-
-```sql
 /* 用来显示授予用户(所有用户或特定用户)的安全权限 */
 SHOW GRANTS;
 ```
