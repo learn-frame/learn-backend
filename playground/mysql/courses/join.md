@@ -97,7 +97,6 @@ WHERE
 
 - customers 表总有 122 名客户, 其中有 22 名客户没有配客服员工
 - employees 表总共有 23 名员工, 其中有 15 名员工为客户服务, 另外 8 个是吃干饭的
--
 
 下面这个 SQL 匹配客户与员工, 所以能匹配的共有 122 - 22 = 100
 
@@ -131,3 +130,24 @@ FROM
         LEFT OUTER JOIN
     employees ON customers.salesRepEmployeeNumber = employees.employeeNumber
 ```
+
+## 使用带聚合函数的联结
+
+同样这些高级联结都可以使用聚合函数啥的.
+
+```sql
+SELECT 
+    COUNT(*), customers.city
+FROM
+    customers
+        INNER JOIN
+    employees ON customers.salesRepEmployeeNumber = employees.employeeNumber
+GROUP BY city
+```
+
+## 总结
+
+- 注意所使用的联结类型. 一般使用内部联结, 但使用外部联结也是有效的.
+- 保证使用正确的联结条件, 否则将返回不正确的数据.
+- 应该总是提供联结条件, 否则会得出笛卡儿积.
+- 在一个联结中可以包含多个表, 甚至对于每个联结可以采用不同的联结类型. 虽然这样做是合法的, 一般也很有用, 但应该在一起测试它们前, 分别测试每个联结. 这将使故障排除更为简单.
