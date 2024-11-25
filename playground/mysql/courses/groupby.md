@@ -75,7 +75,7 @@ GROUP BY orderNumber;
 因为你是根据 `orderNumber` 做的分组, 所以你只能 `SELECT orderNumber, COUNT(*) AS orderNumberCount` 是没问题的, 但你加上 `priceEach` 直接报错:
 
 ```sql
-Error Code: 1055. Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'classicmodels.orderdetails.priceEach' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+Error Code: 1055. Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'orderdetails.priceEach' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
 ```
 
 不管那么多了, 先把这玩意儿干掉吧:

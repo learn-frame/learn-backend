@@ -15,6 +15,10 @@
 - [分组数据](./courses/groupby.md)
 - [子查询](./courses/subquery.md)
 - [联结表](./courses/join.md)
+- [组合查询](./courses/union.md)
+- [插入数据](./courses/insert.md)
+- [更新和删除数据](./courses/update_and_delete.md)
+- [创建和操纵表](./courses/table.md)
 
 ## SQL
 

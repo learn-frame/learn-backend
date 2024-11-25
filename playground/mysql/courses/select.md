@@ -68,5 +68,5 @@ LIMIT 5 OFFSET 10;
 SELECT 
     employees.lastName
 FROM
-    classicmodels.employees;
+    employees;
 ```
