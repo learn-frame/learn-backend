@@ -1,4 +1,4 @@
-# union
+# Union
 
 多数 SQL 查询都只包含从一个或多个表中返回数据的单条 SELECT 语句. MySQL 也允许执行多个查询(多条 SELECT 语句), 并将结果作为单个查询结果集返回. 这些组合查询通常称为并(union)或复合查询(compound query).
 

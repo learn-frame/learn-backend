@@ -1,4 +1,4 @@
-# join
+# Join
 
 如下代码, 我们想从 orders 和 customers 两张表中取出所有字段, 那么 FROM 就要把这两个表都选上.
 
@@ -44,10 +44,10 @@ FROM
     customers,
     employees
 WHERE
-    orderdetails.productCode = 'S24_2360'
-        AND orderdetails.orderNumber = orders.orderNumber
+    orderdetails.orderNumber = orders.orderNumber
         AND orders.customerNumber = customers.customerNumber
-        AND employees.employeeNumber = customers.salesRepEmployeeNumber;
+        AND employees.employeeNumber = customers.salesRepEmployeeNumber
+        AND orderdetails.productCode = 'S24_2360';
 ```
 
 ## 表别名

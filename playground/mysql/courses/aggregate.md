@@ -1,4 +1,4 @@
-# aggregate
+# Aggregate
 
 ```sql
 /* 计算平均值 */

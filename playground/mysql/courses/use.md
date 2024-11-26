@@ -1,4 +1,4 @@
-# Use 和 Show
+# Use and Show
 
 ```sql
 /* 展示所有数据库 */

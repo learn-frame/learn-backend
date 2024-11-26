@@ -1,4 +1,4 @@
-# create and handle table
+# Table
 
 ## 创建表
 

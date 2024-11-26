@@ -1,4 +1,4 @@
-# 子查询
+# Sub Query
 
 说白了就是级联查询. 下面这个例子中, 先在 orderdetails 表中查询 productCode = 'S18_2795' 的所有订单 ID(orderNumber), 根据这些订单 ID, 在 orders 表中查询出这些订单的客户 ID(customerNumber), 然后再在 customers 表中查询出这批用户的国家分布, 当然用 DISTINCT 做了个去重.
 

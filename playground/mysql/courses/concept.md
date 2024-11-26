@@ -1,4 +1,4 @@
-# 原理
+# Concepts
 
 ![image.png](https://edge.yancey.app/beg/v25x9ki8-1695707243638.png)
 
