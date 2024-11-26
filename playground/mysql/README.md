@@ -17,7 +17,7 @@
 - [联结表](./courses/join.md)
 - [组合查询](./courses/union.md)
 - [插入数据](./courses/insert.md)
-- [更新和删除数据](./courses/update_and_delete.md)
+- [更新和删除数据](./courses/mutation.md)
 - [创建和操纵表](./courses/table.md)
 - [视图](./courses/view.md)
 
