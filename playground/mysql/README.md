@@ -20,6 +20,8 @@
 - [更新和删除数据](./courses/mutation.md)
 - [创建和操纵表](./courses/table.md)
 - [视图](./courses/view.md)
+- [存储过程](./courses/procedure.md)
+- [游标](./courses/cursor.md)
 
 ## SQL
 
